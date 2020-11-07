@@ -5,43 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./vue.min.js"></script>
+    <link rel="stylesheet" href="./assets/stye.css">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body,
-        html {
-            width: 100%;
-            height: 100%;
-            background: lightpink;
-        }
-
-        #app {
-            width: 100%;
-            height: 100%;
-            /* background: lightpink; */
-        }
-    </style>
 </head>
 
 <body>
     <div id="app">
-        <header>
+        <!-- <header>
             <h1>标题</h1>
-        </header>
-
-        <section>
-            <div v-for="v in shared.lists">
-                <h3>{{v.title}}</h3>
-                <div>
-                    <span v-for="t in v.tag">{{t}}</span>
-                </div>
-               
+        </header> -->
+        <div class="loading">
+            <h1> 待更新 </h1>
+            <div class="points">
+                <span v-for="i in 3" class="point"></span>
             </div>
-        </section>
+        </div>
+        <!-- <section>
+            <div v-for="v in shared.lists">
+                <h3 class="title">{{v.title}}</h3>
+                <div class="tags">
+                    <span class="tag" v-for="t in v.tag">{{t}}</span>
+                </div>
+                <p class="detail">{{v.detail}}</p>
+            </div>
+        </section> -->
     </div>
     <script src="./src/main.js"></script>
 </body>
