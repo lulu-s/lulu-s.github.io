@@ -19,5 +19,5 @@ var shared = {
 
 new Vue({
     el: '#app',
-    data: {...shared}
+    data: shared
 })
