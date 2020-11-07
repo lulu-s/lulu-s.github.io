@@ -1,3 +1,9 @@
+var state = {
+    size: false
+}
+
+window.state = state;
+
 var shared = {
     menu: {
         
@@ -21,9 +27,26 @@ var shared = {
     ]
 }
 
+window.addEventListener("resize", windowResize)
 
+var app, loading;
+function windowResize(){
+    // loading.style.width = app.style.width = window.innerWidth + 'px';
+    // loading.style.height = app.style.height = window.innerHeight + 'px';
+
+    state.size = true;
+}
 
 new Vue({
     el: '#app',
-    data: shared
+    data: shared,
+    methods: {
+
+    },
+    mounted(){
+        app = this.$refs.app
+        loading = this.$refs.loading
+    }
 })
+
+
