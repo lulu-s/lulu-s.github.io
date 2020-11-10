@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./assets/lib/marked.min.js"></script>
+    <link rel="stylesheet" href="./assets/github-markdown.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="markdown-body" id="content"></div>
+    <script>
+        fetch("./Grammer/markdown grammar.md")
+        // fetch("./Book/CSS-SECRETS/README.md")
+            .then(v => v.text())
+            .then(v => {
+                console.log(v);
+                document.getElementById('content').innerHTML = marked(v);
+            })
+    </script>
+</body>
+
+</html>
