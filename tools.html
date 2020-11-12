@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集</title>
+    <link rel="shortcut icon" href="./assets/lulu.ico">
+    <link rel="bookmark" href="./assets/lulu.ico">
+    <link rel="stylesheet" href="./assets/css/tools.css">
+    <script src="./assets/lib/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <span>LULU</span>
+            <span>Menu</span>
+        </header>
+        <div class="banner"> <span>我希望呈现有趣的实验结果</span> </div>
+        <main>
+            <div class="container">
+                <div class="col-md-4" v-for="(v, i) in list">
+                    <div class="num">{{i < 10 ? "0" + i : i}}</div>
+                    <h2>{{v.title}}</h2>
+                    <div class="author">
+                        <span>BY {{v.author}}</span><br>
+                        <span>{{v.date}}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+  
+
+    <script>
+
+        var list = [
+            {
+                title: "Title",
+                date: "2020 - 11 - 11",
+                author: "Lulu"
+            },
+            {
+                title: "Title",
+                date: "2020 - 11 - 11",
+                author: "Lulu"
+            },
+            {
+                title: "Title",
+                date: "2020 - 11 - 11",
+                author: "Lulu"
+            },
+            {
+                title: "Title",
+                date: "2020 - 11 - 11",
+                author: "Lulu"
+            },
+            {
+                title: "Title",
+                date: "2020 - 11 - 11",
+                author: "Lulu"
+            }
+        ]
+
+        new Vue({
+            el: '#app',
+            data: {list}
+        })
+    </script>
+</body>
+
+</html>
