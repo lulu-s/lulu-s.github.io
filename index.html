@@ -11,16 +11,18 @@
     <script src="./assets/lib/vue.min.js"></script>
     <script src="./assets/lib/p5.min.js"></script>
     <link rel="stylesheet" href="./assets/css/index.css">
-    <title>Lulu bolg</title>
+    <link rel="stylesheet" href="./assets/fa/css/all.css">
+    <title>Lulu Bolg</title>
 </head>
 
 <body>
     <div ref="app" id="app">
-        <!-- <header>
-            <h1>标题</h1>
-        </header> -->
+        <header>
+            <!-- <h1>标题</h1> -->
+            <i class="fa fa-bars menu_btn" :class="{active: state.open_menu}" aria-hidden="true" @click="click_menu"></i>
+        </header>
         <div class="loading" ref="loading">
-            <h1> pending upgrade </h1>
+            <h1> 小码农的点点滴滴 </h1>
             <div class="points">
                 <span v-for="i in 3" class="point"></span>
             </div>
@@ -34,12 +36,17 @@
                 <p class="detail">{{v.detail}}</p>
             </div>
         </section> -->
+        <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
+            <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
+                <a :href="v.url">{{v.title}}</a>
+            </h3>
+        </section>
         <footer>
            <a href="https://github.com/lulu-s">@lulu-s</a>
         </footer>
     </div>
     <script src="./src/index.js"></script>
-    <script src="./src/home/home.js"></script>
+    <!-- <script src="./src/home/home.js"></script> -->
 </body>
 
 </html>

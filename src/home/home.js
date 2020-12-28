@@ -9,21 +9,24 @@ var maxVel = Math.PI / 32;
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-    document.querySelector('.p5Canvas').addEventListener("click", mousePressed)
-    document.querySelector('.p5Canvas').addEventListener("touchstart", mousePressed)
+    
+    // 2020/12 更新 去掉点击重画
+    // document.querySelector('.p5Canvas').addEventListener("click", init_config)
+    // document.querySelector('.p5Canvas').addEventListener("touchstart", init_config)
     ifRadius();
-    mousePressed();
+    init_config();
     stroke(56, 100);
     noFill();
 }
 
 
-
-function mousePressed() {
+// 2020/12 更新 去掉点击重画
+function init_config() {
     particles = [];
     noiseOffset1 = new p5.Vector(Math.random() * 1000000, Math.random() * 1000000, Math.random() * 1000000);
     noiseOffset2 = new p5.Vector(Math.random() * 1000000, Math.random() * 1000000, Math.random() * 1000000);
 }
+
 
 function draw() {
     background(255);
@@ -45,7 +48,7 @@ function draw() {
     }
 
     if(state.size){
-        mousePressed();
+        init_config();
         resizeCanvas(window.innerWidth, window.innerHeight, WEBGL);
         ifRadius();
         state.size = false;

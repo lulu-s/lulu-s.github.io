@@ -1,13 +1,29 @@
 var state = {
-    size: false
+    size: false,
+    open_menu: false
 }
 
 window.state = state;
 
 var shared = {
-    menu: {
-        
-    },
+    menu: [
+        {
+            title: "Home",
+            url: "index.html"
+        },
+        {
+            title: "Blog",
+            url: "md.html"
+        },
+        {
+            title: "Viewer",
+            url: "tools.html"
+        },
+        {
+            title: "About",
+            url: "about.html"
+        }
+    ],
     lists: [
         {
             title: "文章1",
@@ -39,9 +55,12 @@ function windowResize(){
 
 new Vue({
     el: '#app',
-    data: shared,
+    data: { shared, state },
     methods: {
-
+        // 点击菜单
+        click_menu(){
+            state.open_menu = !state.open_menu;
+        }
     },
     mounted(){
         app = this.$refs.app
