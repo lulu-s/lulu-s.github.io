@@ -22,10 +22,6 @@ a {
   transition: all 0.3s ease;
 }
 
-a:hover {
-  color: #000;
-}
-
 .no_selected {
   /* 禁止点击 */
   pointer-events: none;
@@ -139,11 +135,20 @@ h1 {
   transform: rotate(-45deg) translateZ(0px);
 }
 
+.hamburger.active .bun {
+  background-color: #e8a811;
+}
+
+.target-hamburger:hover .bun {
+  /* background-color: #000; */
+  background-color: #f3b933;
+
+}
+
 .hamburger::after {
   content: "";
   width: 44px;
   height: 44px;
-  /* background: white; */
   border-radius: 100%;
   position: absolute;
   top: 50%;
@@ -151,6 +156,12 @@ h1 {
   margin-top: -22px;
   margin-left: -22px;
   z-index: -10;
+  transition: background-color 1s cubic-bezier(0.4, 0, 0.32, 1.26);
+}
+
+.hamburger.active::after {
+  /* background: rgb(232 168 17 / 48%); */
+  background: #e8e6e6
 }
 
 .menu {
@@ -219,6 +230,11 @@ h1 {
   opacity: 1;
   -webkit-transform: scaleX(1) translateZ(0px);
   transform: scaleX(1) translateZ(0px);
+}
+
+.menu .title a:hover,
+.menu .title:hover a {
+  color: #e8a811;
 }
 
 /* 三道杠 menu icon */
