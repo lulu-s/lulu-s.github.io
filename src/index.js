@@ -67,6 +67,7 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
+
 new Vue({
     el: '#app',
     data: { shared, state },
@@ -85,3 +86,25 @@ new Vue({
 })
 
 
+// 阻止双击放大
+var lastTouchEnd = 0;
+document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
+});
+document.addEventListener('touchend', function (event) {
+    var now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+
+// 阻止双指放大
+document.addEventListener('gesturestart', function (event) {
+    event.preventDefault();
+}); 
+document.body.addEventListener('touchmove', function (e) {
+    e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
+}, {passive: false}); //passive 参数不能省略，用来兼容ios和android
