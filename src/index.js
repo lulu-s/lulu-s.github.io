@@ -9,19 +9,19 @@ var shared = {
     menu: [
         {
             title: "Home",
-            url: "index.html"
+            url: "/index"
         },
         {
             title: "Blog",
-            url: "md.html"
+            url: "/md"
         },
         {
             title: "Viewer",
-            url: "tools.html"
+            url: "/tools"
         },
         {
             title: "About",
-            url: "about.html"
+            url: "/about"
         }
     ],
     lists: [
@@ -46,26 +46,42 @@ var shared = {
 window.addEventListener("resize", windowResize)
 
 var app, loading;
-function windowResize(){
+function windowResize() {
     // loading.style.width = app.style.width = window.innerWidth + 'px';
     // loading.style.height = app.style.height = window.innerHeight + 'px';
 
     state.size = true;
 }
 
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+const routes = [
+    { path: '/home', component: Bar },
+    { path: '/md', component: Bar },
+    { path: '/tools', component: Bar },
+    { path: '/about', component: Bar }
+]
+
+const router = new VueRouter({
+    routes // short for `routes: routes`
+})
+
 new Vue({
     el: '#app',
     data: { shared, state },
     methods: {
         // 点击菜单
-        click_menu(){
+        click_menu() {
             state.open_menu = !state.open_menu;
         }
     },
-    mounted(){
+    mounted() {
         app = this.$refs.app
         loading = this.$refs.loading
-    }
+
+    },
+    router
 })
 
 

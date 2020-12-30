@@ -9,20 +9,26 @@
     <link rel="shortcut icon" href="./assets/lulu.ico">
     <link rel="bookmark" href="./assets/lulu.ico">
     <script src="./assets/lib/vue.min.js"></script>
+    <script src="./assets/lib/vue-router.js"></script>
     <script src="./assets/lib/p5.min.js"></script>
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/fa/css/all.css">
-    <title>Lulu Bolg</title>
+    <title>Test UI</title>
 </head>
 
 <body>
     <div ref="app" id="app">
         <header>
-            <!-- <h1>标题</h1> -->
-            <i class="fa fa-bars menu_btn" :class="{active: state.open_menu}" aria-hidden="true" @click="click_menu"></i>
+           <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
+            <div class="target-hamburger" @click="click_menu">
+                <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
+                    <li class="bun"></li>
+                    <li class="bun"></li>
+                </ul>
+            </div>
         </header>
         <div class="loading" ref="loading">
-            <h1> 小码农的点点滴滴 </h1>
+            <!-- <h1> 小码农的点点滴滴 </h1> -->
             <div class="points">
                 <span v-for="i in 3" class="point"></span>
             </div>
@@ -39,10 +45,11 @@
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
                 <a :href="v.url">{{v.title}}</a>
+                <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
             </h3>
         </section>
         <footer>
-           <a href="https://github.com/lulu-s">@lulu-s</a>
+            <a href="https://github.com/lulu-s">@lulu-s</a>
         </footer>
     </div>
     <script src="./src/index.js"></script>

@@ -1,0 +1,7 @@
+list: 
+  - title: "标题"
+    tag: ["CSS", "JS"]
+
+tag:
+  - "CSS"
+  - "JS"
