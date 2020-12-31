@@ -30,7 +30,10 @@
         <div class="article">
             <div class="content" v-for="s in shared.list">
                 <h2 class="title">{{s.title}}</h2>
-                <span class="tag"></span>
+                <span class="date">{{s.date}}</span>
+                <div class="tag_box">
+                    <span class="tag" v-for="t in s.tag">{{t}}</span>
+                </div>
                 <!-- <div class="markdown-body" v-html="s.content"></div> -->
             </div>
         </div>
