@@ -43,8 +43,8 @@
   color: #aaa;
 }
 .content:hover .tag {
-  background-color: #b39d6a;
-  color: #fff;
+  /* background-color: #b39d6a; */
+  color: #b39d6a;
 }
 
 @media (max-width: 991px) {
