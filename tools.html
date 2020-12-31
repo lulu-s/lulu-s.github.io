@@ -7,66 +7,112 @@
     <title>作品集</title>
     <link rel="shortcut icon" href="./assets/lulu.ico">
     <link rel="bookmark" href="./assets/lulu.ico">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/tools.css">
     <script src="./assets/lib/vue.min.js"></script>
 </head>
 
 <body>
     <div id="app">
+
         <header>
-            <span>LULU</span>
-            <span>Menu</span>
+            <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
+            <div class="target-hamburger" @click="click_menu">
+                <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
+                    <li class="bun"></li>
+                    <li class="bun"></li>
+                </ul>
+            </div>
         </header>
-        <div class="banner"> <span>我希望呈现有趣的实验结果</span> </div>
         <main>
             <div class="container">
-                <div class="col-md-4" v-for="(v, i) in list">
+                <div class="col-md-4" v-for="(v, i) in shared.tools">
                     <div class="num">{{i < 10 ? "0" + i : i}}</div>
-                    <h2>{{v.title}}</h2>
-                    <div class="author">
-                        <span>BY {{v.author}}</span><br>
-                        <span>{{v.date}}</span>
+                            <h2>{{v.title}}</h2>
+                            <div class="author">
+                                <span>BY {{v.author}}</span><br>
+                                <span>{{v.date}}</span>
+                            </div>
                     </div>
                 </div>
-            </div>
         </main>
-        <footer></footer>
+        <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
+            <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
+                <a :href="v.url">{{v.title}}</a>
+                <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
+            </h3>
+        </section>
+        <footer>
+            <a href="https://github.com/lulu-s">@lulu-s</a>
+        </footer>
     </div>
-  
+
 
     <script>
 
-        var list = [
-            {
-                title: "Title",
-                date: "2020 - 11 - 11",
-                author: "Lulu"
-            },
-            {
-                title: "Title",
-                date: "2020 - 11 - 11",
-                author: "Lulu"
-            },
-            {
-                title: "Title",
-                date: "2020 - 11 - 11",
-                author: "Lulu"
-            },
-            {
-                title: "Title",
-                date: "2020 - 11 - 11",
-                author: "Lulu"
-            },
-            {
-                title: "Title",
-                date: "2020 - 11 - 11",
-                author: "Lulu"
-            }
-        ]
+        var state = {
+            open_menu: false
+        }
+
+
+        var shared = {
+            menu: [
+                {
+                    title: "Home",
+                    url: "/index"
+                },
+                {
+                    title: "Blog",
+                    url: "/md"
+                },
+                {
+                    title: "Viewer",
+                    url: "/tools"
+                },
+                {
+                    title: "About",
+                    url: "/about"
+                }
+            ],
+            tools: [
+                {
+                    title: "Title",
+                    date: "2020 - 11 - 11",
+                    author: "Lulu"
+                },
+                {
+                    title: "Title",
+                    date: "2020 - 11 - 11",
+                    author: "Lulu"
+                },
+                {
+                    title: "Title",
+                    date: "2020 - 11 - 11",
+                    author: "Lulu"
+                },
+                {
+                    title: "Title",
+                    date: "2020 - 11 - 11",
+                    author: "Lulu"
+                },
+                {
+                    title: "Title",
+                    date: "2020 - 11 - 11",
+                    author: "Lulu"
+                }
+            ]
+        }
+
 
         new Vue({
             el: '#app',
-            data: {list}
+            data: { shared, state },
+            methods: {
+                // 点击菜单
+                click_menu() {
+                    state.open_menu = !state.open_menu;
+                }
+            }
         })
     </script>
 </body>

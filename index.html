@@ -33,15 +33,6 @@
                 <span v-for="i in 3" class="point"></span>
             </div>
         </div>
-        <!-- <section>
-            <div v-for="v in shared.lists">
-                <h3 class="title">{{v.title}}</h3>
-                <div class="tags">
-                    <span class="tag" v-for="t in v.tag">{{t}}</span>
-                </div>
-                <p class="detail">{{v.detail}}</p>
-            </div>
-        </section> -->
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
                 <a :href="v.url">{{v.title}}</a>

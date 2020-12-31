@@ -1,11 +1,31 @@
+/* 通用 */
 * {
   margin: 0;
   padding: 0;
   font-family: PingFangSC-Semibold, sans-serif;
 }
 
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
 ::after,
 ::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -62,7 +82,11 @@ h1 {
 }
 
 /* header */
+header {
+  height: 150px;
+}
 
+/* logo */
 .target-logo {
   width: 48px;
   height: 46px;
@@ -74,6 +98,7 @@ h1 {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* close */
 .target-hamburger {
   width: 88px;
   height: 88px;
@@ -164,6 +189,7 @@ h1 {
   background: #e8e6e6
 }
 
+/* 菜单 */
 .menu {
   position: absolute;
   left: 0;
@@ -237,14 +263,6 @@ h1 {
   color: #e8a811;
 }
 
-/* 三道杠 menu icon */
-.line {
-  width: 20px;
-  height: 3px;
-  background: #000;
-  margin-top: 4px;
-  border-radius: 2px;
-}
 
 @media (max-width: 991px) {
   .target-hamburger {
@@ -255,6 +273,9 @@ h1 {
     top: 33px;
     left: 33px;
     height: 35px;
+  }
+  header {
+    height: 80px;
   }
 }
 
@@ -270,6 +291,7 @@ h1 {
   }
 }
 
+/* loading */
 .loading {
   display: flex;
   flex-flow: column;
@@ -313,6 +335,7 @@ h1 {
   }
 }
 
+/* 底部 */
 footer {
   position: absolute;
   bottom: 10px;

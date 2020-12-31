@@ -53,12 +53,12 @@ function windowResize() {
     state.size = true;
 }
 
-const Foo = { template: '<div>foo</div>' }
+const md = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 
 const routes = [
     { path: '/home', component: Bar },
-    { path: '/md', component: Bar },
+    { path: '/md', component: md },
     { path: '/tools', component: Bar },
     { path: '/about', component: Bar }
 ]
