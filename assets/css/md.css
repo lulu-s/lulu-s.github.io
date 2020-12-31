@@ -32,8 +32,8 @@
   color: #eee;
   margin-right: 10px;
 
-  -webkit-transition: 1s color cubic-bezier(0.23, 1, 0.32, 1);
-  transition: 1s color cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .content:hover .title {
@@ -43,7 +43,7 @@
   color: #aaa;
 }
 .content:hover .tag {
-  /* background-color: #e8a811; */
+  background-color: #b39d6a;
   color: #fff;
 }
 
@@ -54,7 +54,6 @@
   }
 
   .content {
-    margin-bottom: 20px;
     line-height: 30px;
   }
 }
