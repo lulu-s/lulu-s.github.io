@@ -22,6 +22,14 @@ body {
   padding: 0;
 }
 
+html, body {
+  overflow: hidden;
+}
+
+#app {
+  overflow: hidden;
+}
+
 ::after,
 ::before {
   -webkit-box-sizing: border-box;

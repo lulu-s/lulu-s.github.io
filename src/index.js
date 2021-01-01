@@ -20,7 +20,7 @@ var shared = {
             url: "/tools"
         },
         {
-            title: "Lib",
+            title: "Library",
             url: "/ref"
         },
         {
