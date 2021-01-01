@@ -39,11 +39,11 @@ var questions = [
 var url = "../assets/article/"
 inquirer.prompt(questions).then((answers) => {
 
-var data = `---
+var data = `-----------
 title: ${answers.title}
 date:  ${ao.getMyDate(Date.now()).full}
 tag:   ${answers.tag}
----
+-----------
 在这里随便写点什么`
 
     fs.writeFile(url + answers.filename + ".md", data, function (err, data) {

@@ -13,28 +13,30 @@
     <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/md.css">
-    <title>Test 博客</title>
+    <title>博客</title>
 </head>
 
 <body>
     <div id="app">
         <header>
             <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu">
+            <div class="target-hamburger" @click="click_menu"  @touchstart="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
                 </ul>
             </div>
         </header>
-        <div class="article">
-            <div class="content" v-for="s in shared.list">
-                <h2 class="title">{{s.title}}</h2>
+        <div class="article"> 
+            <div class="content" v-for="s in shared.list" :style="{opacity: s.uuid == state.uuid || state.uuid == '' ? 1 : 0, height: s.uuid == state.uuid || state.uuid == '' ? 'auto' : '0px'}">
+                <h2 class="title" @click="open_article(s.uuid)" @touchstart="open_article(s.uuid)" >{{s.title}}</h2>
                 <span class="date">{{s.date}}</span>
                 <div class="tag_box">
                     <span class="tag" v-for="t in s.tag">{{t}}</span>
                 </div>
-                <!-- <div class="markdown-body" v-html="s.content"></div> -->
+                <div v-if="s.uuid == state.uuid" class="text_box">
+                    <div class="markdown-body" v-html="s.content"></div>
+                </div>
             </div>
         </div>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
@@ -75,7 +77,8 @@
             ],
         };
         var state = {
-            open_menu: false
+            open_menu: false,
+            uuid: ""
         }
 
         fetch("./assets/list.json")
@@ -86,6 +89,21 @@
                 init();
             })
 
+            window.onpopstate = function (e) {
+                console.log(e, e.state);
+                if(!e.state) state.uuid = ""
+                
+                // env.state = e.state == null ? 0 : 2;
+                // if (!env.state) {
+                //     // console.log("后退");
+                //     document.getElementById("poem_autio_id").pause();
+                //     window.env.play = false;
+                //     // history.back() 
+                //     // history.pushState({"data": "baidu"}, "title 1", "?page=1")
+                //     // history.pushState(null, "title 3", "?page=0")
+                // }
+                // // console.log(window.history.length);
+            }
 
         function init() {
             new Vue({
@@ -95,6 +113,16 @@
                     // 点击菜单
                     click_menu() {
                         state.open_menu = !state.open_menu;
+                    },
+                    // 打开文章
+                    open_article(uuid){
+                        state.uuid = uuid;
+                        window.scroll(0, 0)
+                        history.pushState({uuid}, "uuid", "#" + uuid)
+                    },
+                    // 关闭文章
+                    close_article(){
+                        state.uuid = ""
                     }
                 }
             })

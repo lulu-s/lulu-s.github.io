@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test 作品集</title>
+    <title>作品集</title>
     <link rel="shortcut icon" href="./assets/lulu.ico">
     <link rel="bookmark" href="./assets/lulu.ico">
     <link rel="stylesheet" href="./assets/css/index.css">
@@ -17,7 +17,7 @@
 
         <header>
             <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu">
+            <div class="target-hamburger" @click="click_menu" @touchstart="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>

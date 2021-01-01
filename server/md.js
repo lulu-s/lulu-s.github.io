@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var marked = require("marked");
 const cheerio = require('cheerio')
-
+var ao = require("../assets/lib/ao")
 
 //解析需要遍历的文件夹，我这以E盘根目录为例
 var url = "../assets/article"
@@ -38,7 +38,7 @@ function fileDisplay(filePath) {
             // }
             // data.list.push(tem)
             var content = fs.readFileSync(filedir, 'utf8');
-            var msg = content.split("---")
+            var msg = content.split("-----------")
             content = msg[2]
             var att = msg[1].split("\n")
             var tem = {
@@ -46,7 +46,8 @@ function fileDisplay(filePath) {
                 date: att[2].replace("date:", "").trim(),
                 tag: att[3].replace("tag:", "").trim().split(" "),
                 content: marked(content),
-                filename
+                filename,
+                uuid: ao.generateUUID()
             }
             data.list.push(tem)
         }

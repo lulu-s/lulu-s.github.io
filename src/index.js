@@ -85,8 +85,8 @@ new Vue({
         app = this.$refs.app
         loading = this.$refs.loading
 
-    },
-    router
+    }
+    // router
 })
 
 

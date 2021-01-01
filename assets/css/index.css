@@ -77,7 +77,7 @@ html {
 
 h1 {
   font-size: 4em;
-  letter-spacing: 5px;
+  /* letter-spacing: 5px; */
   transition: all 0.3s ease;
 }
 
@@ -175,6 +175,7 @@ header {
   width: 44px;
   height: 44px;
   border-radius: 100%;
+  background: #fff;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -191,7 +192,7 @@ header {
 
 /* 菜单 */
 .menu {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
@@ -205,6 +206,7 @@ header {
   flex-flow: column;
   /* background: linear-gradient(45deg, #ffffff, #69635f); */
   background: #fff;
+  z-index: 99;
 }
 
 .menu.active {
@@ -264,7 +266,22 @@ header {
 }
 
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
+  .target-hamburger {
+    top: 0px;
+    right: 0px;
+  }
+  .target-logo {
+    top: 33px;
+    left: 33px;
+    height: 35px;
+  }
+  header {
+    height: 80px;
+  }
+} */
+
+@media (max-width: 500px) { 
   .target-hamburger {
     top: 0px;
     right: 0px;
@@ -340,7 +357,7 @@ header {
 
 /* 底部 */
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   width: 100%;
   text-align: center;
