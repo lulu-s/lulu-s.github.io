@@ -29,7 +29,7 @@
         </header>
         <div class="article"> 
             <div class="content" v-for="s in shared.list" :style="{opacity: s.uuid == state.uuid || state.uuid == '' ? 1 : 0, height: s.uuid == state.uuid || state.uuid == '' ? 'auto' : '0px'}">
-                <h2 class="title" @click="open_article(s.uuid)" @touchstart="open_article(s.uuid)" >{{s.title}}</h2>
+                <h2 class="title" @click="open_article(s.uuid)"  >{{s.title}}</h2>
                 <span class="date">{{s.date}}</span>
                 <div class="tag_box">
                     <span class="tag" v-for="t in s.tag">{{t}}</span>
