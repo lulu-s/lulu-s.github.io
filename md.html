@@ -90,8 +90,8 @@
             })
 
             window.onpopstate = function (e) {
-                console.log(e, e.state);
-                if(!e.state) state.uuid = ""
+                // console.log(e, e.state);
+                // if(!e.state) state.uuid = ""
                 
                 // env.state = e.state == null ? 0 : 2;
                 // if (!env.state) {
@@ -118,7 +118,7 @@
                     open_article(uuid){
                         state.uuid = uuid;
                         window.scroll(0, 0)
-                        history.pushState({uuid}, "uuid", "#" + uuid)
+                        // history.pushState({uuid}, "uuid", "#" + uuid)
                     },
                     // 关闭文章
                     close_article(){
