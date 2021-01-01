@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/md.css">
     <script src="./assets/lib/util.js"></script>
-    <title>博客</title>
+    <title>Blog</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         </header>
         <div class="article"> 
             <div class="content" v-for="s in shared.list" :style="{opacity: s.uuid == state.uuid || state.uuid == '' ? 1 : 0, height: s.uuid == state.uuid || state.uuid == '' ? 'auto' : '0px'}">
-                <h2 class="title" @click="open_article(s.uuid)"  >{{s.title}}</h2>
+                <h2 class="title" @click="open_article(s)"  >{{s.title}}</h2>
                 <span class="date">{{s.date}}</span>
                 <div class="tag_box">
                     <span class="tag" v-for="t in s.tag">{{t}}</span>
@@ -95,8 +95,10 @@
             }
 
             window.onpopstate = function (e) {
-                console.log(e, e.state, location.href.indexOf('#'));
-                if(!e.state && location.href.indexOf('#') == -1) state.uuid = ""
+                if(!e.state && location.href.indexOf('#') == -1) {
+                    state.uuid = "";
+                    document.title = "Blog"
+                }
             }
 
         function init() {
@@ -109,15 +111,17 @@
                         state.open_menu = !state.open_menu;
                     },
                     // 打开文章
-                    open_article(uuid){
-                        state.uuid = uuid;
+                    open_article(s){
+                        state.uuid = s.uuid;
                         window.scroll(0, 0)
-                        history.pushState({uuid}, "uuid", "/uuid")
+                        document.title = s.title
+                        history.pushState({uuid: s.uuid}, "uuid", "/uuid")
                     },
                     // 关闭文章
                     close_article(){
                         state.uuid = ""
-                        history.pushState({uuid}, "uuid", "#")
+                        document.title = "Blog"
+                        history.pushState({uuid}, "uuid", "")
                     }
                 }
             })
