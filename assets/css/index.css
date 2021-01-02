@@ -23,11 +23,11 @@ body {
 }
 
 html, body {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #app {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 ::after,
