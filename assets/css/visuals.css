@@ -98,7 +98,7 @@ a:-webkit-any-link {
 .col-md-4:hover .author, 
 .col-md-4:hover h2 {
     /* color: #000; */
-    mix-blend-mode: darken;
+    /* mix-blend-mode: darken; */
 }
 
 
