@@ -31,12 +31,24 @@ a:-webkit-any-link {
     padding-right: 15px;
     padding-left: 15px;
     text-align: center;
-    border: 1px solid #1919701a;
+    /* border: 1px solid #1919701a; */
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
+
+.img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+}
+
+
 
 .num {
     position: absolute;
@@ -44,6 +56,7 @@ a:-webkit-any-link {
     top: 10px;
     border: 1px solid #333;
     padding: 8px 10px;
+    mix-blend-mode: difference;
 }
 
 .author {
@@ -52,6 +65,7 @@ a:-webkit-any-link {
     bottom: 10px; 
     text-align: right;
     font-size: 12px;
+    mix-blend-mode: difference;
 }
 
 
@@ -65,7 +79,28 @@ a:-webkit-any-link {
 
 .h2, h2 {
     font-size: 30px;
+    mix-blend-mode: difference;
 }
+
+.col-md-4:hover .img {
+    transform: scale(1.2);
+}
+
+.num, 
+.author, 
+.h2,
+.img {
+    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+.col-md-4:hover .num, 
+.col-md-4:hover .author, 
+.col-md-4:hover h2 {
+    /* color: #000; */
+    mix-blend-mode: darken;
+}
+
 
 p {
     margin: 0 0 10px;

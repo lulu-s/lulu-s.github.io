@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/lulu.ico">
-    <link rel="bookmark" href="./assets/lulu.ico">
-    <title>Library</title>
-    <script src="./assets/lib/vue.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="stylesheet" href="./assets/css/lib.css">
-    <script src="./assets/lib/util.js"></script>
+    <title>Work</title>
+    <link rel="shortcut icon" href="../assets/lulu.ico">
+    <link rel="bookmark" href="../assets/lulu.ico">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/visuals.css">
+    <script src="../assets/lib/vue.min.js"></script>
+    <script src="../assets/lib/util.js"></script>
+    <script src="../src/menu.js"></script>
 </head>
+
 <body>
     <div id="app">
 
         <header>
-            <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
+            <a href="https://lulu-s.github.io/"><img class="target-logo" src="../assets/logo.png" alt=""></a>
             <div class="target-hamburger" @click="click_menu"  >
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
@@ -23,12 +26,21 @@
                 </ul>
             </div>
         </header>
-        <div class="loading" ref="loading" class="no_selected">
-            <h1> 待装修 </h1>
-            <div class="points">
-                <span v-for="i in 3" class="point"></span>
+        <main>
+            <div class="container">
+                <a class="col-md-4" 
+                    v-for="(v, i) in shared.viewer"
+                    :href="v.url">
+                    <img class="img" :src="v.css.bg_img" alt="">
+                    <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
+                    <h2>{{v.title}}</h2>
+                    <div class="author">
+                        <span>BY {{v.author}}</span><br>
+                        <span>{{v.date}}</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        </main>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
                 <a :href="v.url">{{v.title}}</a>
@@ -40,31 +52,8 @@
         </footer>
     </div>
 
+
     <script>
-        var shared = {
-            menu: [
-                {
-                    title: "Home",
-                    url: "/index"
-                },
-                {
-                    title: "Blog",
-                    url: "/md"
-                },
-                {
-                    title: "Viewer",
-                    url: "/tools"
-                },
-                {
-                    title: "Library",
-                    url: "/ref"
-                },
-                {
-                    title: "About",
-                    url: "/about"
-                }
-            ],
-        };
         var state = {
             open_menu: false
         }
@@ -72,6 +61,9 @@
         new Vue({
             el: '#app',
             data: { shared, state },
+            methods: {
+                
+            },
             methods: {
                 // 点击菜单
                 click_menu() {
@@ -81,4 +73,5 @@
         })
     </script>
 </body>
+
 </html>

@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/lulu.ico">
-    <link rel="bookmark" href="./assets/lulu.ico">
-    <title>Blob</title>
-    <script src="./assets/lib/vue.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="stylesheet" href="./assets/css/about.css">
-    <script src="./assets/lib/util.js"></script>
+    <link rel="shortcut icon" href="../assets/lulu.ico">
+    <link rel="bookmark" href="../assets/lulu.ico">
+    <title>Library</title>
+    <script src="../assets/lib/vue.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/lib.css">
+    <script src="../assets/lib/util.js"></script>
+    <script src="../src/menu.js"></script>
 </head>
 <body>
     <div id="app">
 
         <header>
-            <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu" >
+            <a href="https://lulu-s.github.io/"><img class="target-logo" src="../assets/logo.png" alt=""></a>
+            <div class="target-hamburger" @click="click_menu"  >
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
@@ -24,10 +25,9 @@
             </div>
         </header>
         <div class="loading" ref="loading" class="no_selected">
-            <h1> <a href="https://github.com/lulu-s/lulu-book">博客传送门</a> </h1>
+            <h1> 待装修 </h1>
             <div class="points">
-                <a href="https://github.com/lulu-s/lulu-book">Click Me</a>
-                <!-- <span v-for="i in 3" class="point"></span> -->
+                <span v-for="i in 3" class="point"></span>
             </div>
         </div>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
@@ -42,30 +42,6 @@
     </div>
 
     <script>
-        var shared = {
-            menu: [
-                {
-                    title: "Home",
-                    url: "/index"
-                },
-                {
-                    title: "Blog",
-                    url: "/md"
-                },
-                {
-                    title: "Viewer",
-                    url: "/tools"
-                },
-                {
-                    title: "Library",
-                    url: "/ref"
-                },
-                {
-                    title: "About",
-                    url: "/about"
-                }
-            ],
-        };
         var state = {
             open_menu: false
         }
