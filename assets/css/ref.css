@@ -39,7 +39,7 @@ a:-webkit-any-link {
     overflow: hidden;
 }
 
-.col-md-4::after {
+/* .col-md-4::after {
     content: "";
     position: absolute;
     left: 15px;
@@ -47,7 +47,7 @@ a:-webkit-any-link {
     right: 15px;
     bottom: 15px;
     border: 1px solid white;
-}
+} */
 
 .img {
     width: 100%;
