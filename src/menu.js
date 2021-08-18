@@ -37,13 +37,43 @@ var shared = {
             ]
         },
         {
-            title: "Library",
+            title: "Reference",
             url: "/page/ref"
         },
         {
             title: "About",
             url: "/page/about"
         }
+    ],
+    refs: [
+        {
+            link: 'https://sighack.com/post/cohen-sutherland-line-clipping-algorithm',
+            cover: '../../assets/image/refs/Cohen-Sutherland.png',
+            title: "The Cohen-Sutherland Line Clipping Algorithm",
+            date: "2021.08.18",
+            key: ['shader', 'blog', '生成艺术']
+        },
+        {
+            link: 'https://sighack.com/post/flood-fill-art-using-random-walks',
+            cover: '../../assets/image/refs/flood-fill.png',
+            title: "Flood-Fill Art Using Random Walks",
+            date: "2021.08.18",
+            key: ['shader', 'blog', '生成艺术']
+        },
+        {
+            link: 'https://konel.jp/works/wagashi/',
+            cover: '../../assets/image/refs/サイバー和菓子.png',
+            title: "サイバー和菓子",
+            date: "2021.08.18",
+            key: ['装置', 'Web']
+        },
+        {
+            link: 'https://spite.github.io/sketch/',
+            cover: '../../assets/image/refs/DIGITAL-INKTOBER.png',
+            title: "DIGITAL INKTOBER 2020",
+            date: "2021.08.18",
+            key: ['shader', '组', '生成艺术']
+        },
     ],
     viewer: [
         {
