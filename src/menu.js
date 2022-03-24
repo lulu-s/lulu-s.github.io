@@ -22,17 +22,6 @@ var shared = {
                     css: {
                         bg_img: '../../assets/image/cover/01_demo.png'
                     }
-                },
-                {
-                    key: '01_demo',
-                    url: '/page/demo/01_demo',
-                    title: "Test",
-                    date: "2021.05.09",
-                    author: 'Henrik Rydgård',
-                    author_url: "https://webglsamples.org/electricflower/electricflower.html",
-                    css: {
-                        bg_img: '../../assets/image/cover/01_demo.png'
-                    }
                 }
             ]
         },
@@ -46,6 +35,13 @@ var shared = {
         }
     ],
     refs: [
+        // {
+        //     link: '地址',
+        //     cover: '头图',
+        //     title: "标题",
+        //     date: "添加日期",
+        //     key: ['tag1', 'tag1', 'tag1'] 
+        // },
         {
             link: 'https://sighack.com/post/cohen-sutherland-line-clipping-algorithm',
             cover: '../../assets/image/refs/Cohen-Sutherland.png',
@@ -61,18 +57,19 @@ var shared = {
             key: ['shader', 'blog', '生成艺术']
         },
         {
-            link: 'https://konel.jp/works/wagashi/',
-            cover: '../../assets/image/refs/サイバー和菓子.png',
-            title: "サイバー和菓子",
-            date: "2021.08.18",
-            key: ['装置', 'Web']
-        },
-        {
             link: 'https://spite.github.io/sketch/',
             cover: '../../assets/image/refs/DIGITAL-INKTOBER.png',
             title: "DIGITAL INKTOBER 2020",
             date: "2021.08.18",
             key: ['shader', '组', '生成艺术']
+        },
+        {
+            link: 'https://kynd.github.io/p5sketches/index.html',
+            cover: '../../assets/image/refs/p5skecth.png',
+            title: "Sketching with Math and Quasi Physics",
+            subtitle: "P5.js绘制可视化数学公式",
+            date: "2021.08.18",
+            key: ['P5.js', '数学']
         },
     ],
     viewer: [
