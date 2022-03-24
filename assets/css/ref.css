@@ -131,6 +131,7 @@ a:-webkit-any-link {
     bottom: 30px; */
     margin-top: -10px;
     font-weight: 400;
+    text-transform: capitalize;
 }
 
 .col-md-4:hover .img {

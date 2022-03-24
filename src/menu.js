@@ -43,6 +43,22 @@ var shared = {
         //     key: ['tag1', 'tag1', 'tag1'] 
         // },
         {
+            link: 'https://thebookofshaders.com/?lan=ch',
+            cover: '../../assets/image/refs/thebookofshader.png',
+            title: "The Book of Shaders",
+            subtitle: "shader 着色器教学指南",
+            date: "2022.03.24",
+            key: ['shader', '教学', "book"]
+        },
+        {
+            link: 'https://kynd.github.io/p5sketches/index.html',
+            cover: '../../assets/image/refs/p5skecth.png',
+            title: "Sketching with Math and Quasi Physics",
+            subtitle: "P5.js绘制可视化数学公式",
+            date: "2022.03.24",
+            key: ['P5.js', '数学']
+        },
+        {
             link: 'https://sighack.com/post/cohen-sutherland-line-clipping-algorithm',
             cover: '../../assets/image/refs/Cohen-Sutherland.png',
             title: "The Cohen-Sutherland Line Clipping Algorithm",
@@ -62,15 +78,7 @@ var shared = {
             title: "DIGITAL INKTOBER 2020",
             date: "2021.08.18",
             key: ['shader', '组', '生成艺术']
-        },
-        {
-            link: 'https://kynd.github.io/p5sketches/index.html',
-            cover: '../../assets/image/refs/p5skecth.png',
-            title: "Sketching with Math and Quasi Physics",
-            subtitle: "P5.js绘制可视化数学公式",
-            date: "2021.08.18",
-            key: ['P5.js', '数学']
-        },
+        }
     ],
     viewer: [
         {
