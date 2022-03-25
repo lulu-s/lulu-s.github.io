@@ -1,3 +1,5 @@
+import './ref';
+
 var shared = {
     menu: [
         {
@@ -42,6 +44,14 @@ var shared = {
         //     date: "添加日期",
         //     key: ['tag1', 'tag1', 'tag1'] 
         // },
+        {
+            link: 'https://codepen.io/robin-dela/pen/qxzzzd',
+            cover: '../../assets/image/refs/Loader concept.png',
+            title: "Loader concept",
+            subtitle: "进度条风格化",
+            date: "2022.03.25",
+            key: ['shader', 'three.js', "进度条", "代码片段"]
+        },
         {
             link: 'https://thebookofshaders.com/?lan=ch',
             cover: '../../assets/image/refs/thebookofshader.png',

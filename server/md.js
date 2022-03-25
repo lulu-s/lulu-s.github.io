@@ -1,3 +1,8 @@
+/**
+ * 更新博客文件列表
+ */
+
+
 var fs = require('fs');
 var path = require('path');
 var marked = require("marked");

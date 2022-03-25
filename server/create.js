@@ -1,3 +1,8 @@
+/**
+ * 创建 博客.md 文件
+ */
+
+
 const fs = require("fs");
 var ao = require("../assets/lib/ao");
 var inquirer = require('inquirer');
