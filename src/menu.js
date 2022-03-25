@@ -45,12 +45,36 @@ var shared = {
         //     key: ['tag1', 'tag1', 'tag1'] 
         // },
         {
+            link: 'https://codepen.io/vcomics/pens/popular',
+            cover: '../../assets/image/refs/Victor Vergara.png',
+            title: "Victor Vergara CodePen",
+            subtitle: "Many Shader Three.js",
+            date: "2022.03.25",
+            key: ['shader', 'three.js', 'person', "CodePen"]
+        },
+        {
+            link: 'https://codepen.io/vcomics/pen/djqNrm',
+            cover: '../../assets/image/refs/Perlin Noise.png',
+            title: "Perlin Noise",
+            subtitle: "nosie 的一种应用",
+            date: "2022.03.25",
+            key: ['shader', 'three.js', 'noise', "CodePen"]
+        },
+        {
+            link: 'https://codepen.io/vcomics/pen/ZjMpOe',
+            cover: '../../assets/image/refs/Shader Moon.png',
+            title: "Shader Moon",
+            subtitle: "nosie 的一种应用",
+            date: "2022.03.25",
+            key: ['shader', 'three.js', 'noise', "CodePen"]
+        },
+        {
             link: 'https://codepen.io/robin-dela/pen/qxzzzd',
             cover: '../../assets/image/refs/Loader concept.png',
             title: "Loader concept",
-            subtitle: "进度条风格化",
+            subtitle: "process 风格化",
             date: "2022.03.25",
-            key: ['shader', 'three.js', "进度条", "代码片段"]
+            key: ['three.js', "进度条", "CodePen"]
         },
         {
             link: 'https://thebookofshaders.com/?lan=ch',
