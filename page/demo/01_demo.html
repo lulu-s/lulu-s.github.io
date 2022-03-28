@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/lulu.ico">
     <link rel="bookmark" href="../../assets/lulu.ico">
-    <title>01_demo</title>
+    <title>Shader Text Canvas</title>
     <script src="../../assets/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/index.css">
+    <link rel="stylesheet" href="../../assets/css/demo.css">
     <script src="../../assets/lib/util.js"></script>
+    <script src="../../assets/lib/three.min.js"></script>
     <script src="../../src/menu.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <style>
-        body {
-            background: #000;
-            color: #fff;
-        }
-        footer {
-            text-align: right;
-            right: 30px;
-        }
+        
     </style>
 </head>
+
 <body>
     <div id="app">
 
         <header>
             <a href="https://lulu-s.github.io/"><img class="target-logo" src="../../assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu"  >
+            <div class="target-hamburger" @click="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
                 </ul>
             </div>
         </header>
-        <div class="loading" ref="loading" class="no_selected">
+        <!-- <div class="loading" ref="loading" class="no_selected">
             <h1> 我是Test </h1>
             <div class="points">
                 <span v-for="i in 3" class="point"></span>
             </div>
-        </div>
+        </div> -->
+        <div id="visual_dom"></div>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
                 <a :href="v.url">{{v.title}}</a>
@@ -50,6 +49,21 @@
         </footer>
     </div>
 
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            gl_Position = vec4( position, 1.0 );
+        }
+    </script>
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform vec2 u_resolution;
+        uniform float u_time;
+
+        void main() {
+            vec2 st = gl_FragCoord.xy/u_resolution.xy;
+            gl_FragColor=vec4(st.x,st.y,0.0,1.0);
+        }
+    </script>
     <script>
         var state = {
             open_menu: false
@@ -65,6 +79,65 @@
                 }
             }
         })
+
+         // three.js
+        var container;
+        var camera, scene, renderer, clock;
+        var uniforms;
+
+        init();
+        animate();
+
+        function init() {
+            container = document.getElementById('visual_dom');
+
+            camera = new THREE.Camera();
+            camera.position.z = 1;
+
+            scene = new THREE.Scene();
+            clock = new THREE.Clock();
+
+            var geometry = new THREE.PlaneBufferGeometry(2, 2);
+
+            uniforms = {
+                u_time: { type: "f", value: 1.0 },
+                u_resolution: { type: "v2", value: new THREE.Vector2() }
+            };
+
+            var material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: document.getElementById('vertexShader').textContent,
+                fragmentShader: document.getElementById('fragmentShader').textContent
+            });
+
+            var mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            container.appendChild(renderer.domElement);
+
+            onWindowResize();
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize(event) {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            uniforms.u_resolution.value.x = renderer.domElement.width;
+            uniforms.u_resolution.value.y = renderer.domElement.height;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            uniforms.u_time.value += clock.getDelta();
+            renderer.render(scene, camera);
+        }
     </script>
 </body>
+
 </html>

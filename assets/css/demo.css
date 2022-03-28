@@ -1,0 +1,24 @@
+
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+body, html {
+    overflow: hidden;
+}
+
+#visual_dom {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+footer {
+    text-align: right;
+    right: 30px;
+}

@@ -1,4 +1,4 @@
-import './ref';
+// import './ref';
 
 var shared = {
     menu: [
@@ -17,10 +17,10 @@ var shared = {
                 {
                     key: '01_demo',
                     url: '/page/demo/01_demo',
-                    title: "Test",
-                    date: "2021.05.09",
-                    author: 'Henrik Rydgård',
-                    author_url: "https://webglsamples.org/electricflower/electricflower.html",
+                    title: "Shader Text Canvas",
+                    date: "2022.03.28",
+                    author: 'lulu',
+                    author_url: "https://thebookofshaders.com/04/?lan=ch",
                     css: {
                         bg_img: '../../assets/image/cover/01_demo.png'
                     }
@@ -117,11 +117,11 @@ var shared = {
     viewer: [
         {
             url: '/page/demo/01_demo',
-            title: "Test",
-            date: "2021.05.09",
-            author: 'Henrik Rydgård',
+            title: "Shader Text Canvas",
+            date: "2022.03.28",
+            author: 'lulu',
             link: '../../assets/image/cover/01_demo.png',
-            author_url: "https://webglsamples.org/electricflower/electricflower.html",
+            author_url: "https://thebookofshaders.com/04/?lan=ch",
             css: {
                 bg_img: '../../assets/image/cover/01_demo.png'
             }
