@@ -15,7 +15,7 @@
     <script src="../../src/menu.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <style>
-        
+
     </style>
 </head>
 
@@ -61,7 +61,7 @@
 
         void main() {
             vec2 st = gl_FragCoord.xy/u_resolution.xy;
-            gl_FragColor=vec4(st.x,st.y,0.0,1.0);
+            gl_FragColor=vec4(st.x + abs(sin(u_time))*0.5,st.y + abs(sin(u_time))*0.5,0.0,1.0);
         }
     </script>
     <script>
@@ -80,7 +80,7 @@
             }
         })
 
-         // three.js
+        // three.js
         var container;
         var camera, scene, renderer, clock;
         var uniforms;
