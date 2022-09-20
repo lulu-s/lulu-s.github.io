@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work</title>
+    <title>Example</title>
     <link rel="shortcut icon" href="../assets/lulu.ico">
     <link rel="bookmark" href="../assets/lulu.ico">
     <link rel="stylesheet" href="../assets/css/index.css">
@@ -28,17 +28,21 @@
             </div>
         </header>
         <main>
+            <div class="message">
+                <div class="title">Three.JS And Shader Example</div>
+                <p> 受 <a class="link" href="https://wangyasai.github.io/">@亚赛</a>  和 <a class="link" href="https://dailycssdesign.com/">@DailyCssDesign</a> 的影响，<br/> 希望能拥有良好的学习打卡习惯，争取早日做出可可爱爱的视觉。</p>
+            </div>
             <div class="container">
                 <a class="col-md-4" 
                     v-for="(v, i) in shared.viewer"
                     :href="v.url">
-                    <img class="img" v-lazy="v.css.bg_img" alt="">
-                    <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
+                    <img class="img" :src="v.css.bg_img" alt="">
+                    <!-- <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
                     <h2>{{v.title}}</h2>
                     <div class="author">
                         <span>BY {{v.author}}</span><br>
                         <span>{{v.date}}</span>
-                    </div>
+                    </div> -->
                 </a>
             </div>
         </main>

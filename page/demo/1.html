@@ -23,29 +23,44 @@
     <div id="app">
 
         <header>
-            <a href="https://lulu-s.github.io/"><img class="target-logo" src="../../assets/logo.png" alt=""></a>
+            <!-- <a href="https://lulu-s.github.io/"><img class="target-logo" src="../../assets/logo.png" alt=""></a>
             <div class="target-hamburger" @click="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
                 </ul>
-            </div>
+            </div> -->
         </header>
-        <!-- <div class="loading" ref="loading" class="no_selected">
-            <h1> 我是Test </h1>
-            <div class="points">
-                <span v-for="i in 3" class="point"></span>
-            </div>
-        </div> -->
+
         <div id="visual_dom"></div>
-        <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
+
+        <!-- <div class="main">
+            <h2>{{cur.title}}</h2>
+        </div> -->
+
+
+        <!-- <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
                 <a :href="v.url">{{v.title}}</a>
-                <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
             </h3>
-        </section>
-        <footer>
-            <a href="https://webglsamples.org/electricflower/electricflower.html">BY Henrik Rydgård</a>
+        </section> -->
+
+
+        <footer class="arrow">
+            <span class="prev " v-if="state.id != 0" >
+                <a class=" item-link" :href="(state.id + 1 - 1)+'.html'" >
+                    <span class="item-arrow item-arrow-left"></span>
+                    <span class="item-text">prev</span>
+                </a>
+            </span>
+           <span class="next" v-if="state.id < shared.viewer.length - 1" >
+            <a class=" item-link" :href="(state.id + 1 + 1)+'.html'">
+                <span class="item-text">next</span>
+                <span class="item-arrow item-arrow-right"></span>
+            </a>
+           </span>
+            <!-- Learning in {{cur.date}}<br/>
+            example be from <a :href="cur.ref.url">{{cur.ref.title}}</a> -->
         </footer>
     </div>
 
@@ -61,17 +76,21 @@
 
         void main() {
             vec2 st = gl_FragCoord.xy/u_resolution.xy;
-            gl_FragColor=vec4(st.x + abs(sin(u_time))*0.5,st.y + abs(sin(u_time))*0.5,0.0,1.0);
+            gl_FragColor=vec4(st.x + abs(sin(u_time))*0.1,st.y + abs(sin(u_time))*0.6, 1.0,1.0);
         }
     </script>
     <script>
+        var tem_arr = location.href.split('/');
         var state = {
-            open_menu: false
+            open_menu: false,
+            id: parseInt(tem_arr[tem_arr.length - 1]) - 1
         }
+
+        var cur = shared.viewer[state.id]
 
         new Vue({
             el: '#app',
-            data: { shared, state },
+            data: { shared, state, cur },
             methods: {
                 // 点击菜单
                 click_menu() {
@@ -90,6 +109,7 @@
 
         function init() {
             container = document.getElementById('visual_dom');
+            console.log(container);
 
             camera = new THREE.Camera();
             camera.position.z = 1;

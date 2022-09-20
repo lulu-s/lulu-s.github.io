@@ -1,4 +1,6 @@
-
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 
 body {
     background: #000;
@@ -9,6 +11,141 @@ body, html {
     overflow: hidden;
 }
 
+h1 {
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.arrow {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    bottom: 30px;
+
+}
+
+
+a {
+    /* color: #fff; */
+    text-transform: capitalize;
+    display: block;
+    transition: color 0.12s;
+
+    color: #fff;
+}
+
+
+.menu-item {
+    position: absolute;
+    bottom: 0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.item-link{ 
+    color: #fff;
+    transition: transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -webkit-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -moz-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -o-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38);
+}
+
+
+.item-text {
+    transition: transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -webkit-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -moz-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -o-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.item-arrow {
+    transition: transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -webkit-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -moz-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -o-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38);
+
+    width: 80px;
+    height: 1px;
+    /* background: #fff; */
+    position: relative;
+    background: currentColor;
+}
+
+
+.item-arrow:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    border: 5px solid transparent;
+    margin-top: -5px;
+}
+
+.item-arrow-left {
+    margin-right: 5px;
+}
+
+.item-arrow-right {
+    margin-left: 5px;
+}
+.item-arrow-left:after {
+    border-right: 7px solid ;
+    left: -7px;
+}
+
+.item-arrow-right:after {
+    border-left: 7px solid;
+    right: -7px;
+}
+
+
+.item-arrow, 
+.item-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.prev {
+    position: absolute;
+    left: 50px;
+    cursor: pointer;
+}
+
+.next {
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+}
+
+
+
+.prev:hover .item-text {
+    transform: translateX(-6px);
+    transition-duration: 0.8s;
+}
+
+.prev:hover .item-arrow {
+    transform: translateX(-10px);
+}
+
+
+
+.next:hover .item-text {
+    transform: translateX(6px);
+    transition: transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -webkit-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -moz-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -o-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38);
+    transition-duration: 0.8s;
+}
+
+.next:hover .item-arrow {
+    transform: translateX(10px);
+}
+.prev:hover .item-link,
+.next:hover .item-link{
+    /* transform: translateX(10px); */
+    color: #ff3b7d;
+}
+
+.prev:active .item-link,
+.next:active .item-link {
+    color: #d40047;
+}
+
 #visual_dom {
     position: absolute;
     left: 0;
@@ -16,9 +153,4 @@ body, html {
     bottom: 0;
     right: 0;
     overflow: hidden;
-}
-
-footer {
-    text-align: right;
-    right: 30px;
 }

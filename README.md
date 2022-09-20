@@ -10,4 +10,5 @@
 
 
 ## 参考
-* [亚赛大人 个人网站](https://wangyasai.github.io/)
+* [@亚赛](https://wangyasai.github.io/)
+* [@DailyCssDesign](https://dailycssdesign.com/)

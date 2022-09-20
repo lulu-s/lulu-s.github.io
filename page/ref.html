@@ -29,6 +29,10 @@
         </header>
 
         <main>
+            <div class="message">
+                <div class="title">参考库</div>
+                <p> 记录一些日常遇见的值得留存的网页，<br/>以备后续查找。 </p>
+            </div>
             <div class="container">
                 <a class="col-md-4" v-for="(v, i) in shared.refs" target="_blank" :href="v.link">
                     <img class="img" :src="v.cover" alt="" />
@@ -59,9 +63,9 @@
                 <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
             </h3>
         </section>
-        <footer>
+        <!-- <footer>
             <a href="https://github.com/lulu-s">@lulu-s</a>
-        </footer>
+        </footer> -->
     </div>
 
     <script>

@@ -17,6 +17,8 @@ a:-webkit-any-link {
 } */
 
 
+
+
 .container {
     width: 100%;
     /* padding-right: 15px;
@@ -46,9 +48,9 @@ a:-webkit-any-link {
     left: 0;
     top: 0;
     object-fit: cover;
+
+    transition: all .5s ease;
 }
-
-
 
 .num {
     position: absolute;
@@ -57,19 +59,32 @@ a:-webkit-any-link {
     border: 1px solid #333;
     padding: 8px 10px;
     mix-blend-mode: difference;
+    transition: all .7s ease;
 }
 
 .author {
     position: absolute;
     right: 10px;
-    bottom: 10px; 
+    bottom: 10px;
     text-align: right;
     font-size: 12px;
     mix-blend-mode: difference;
+    transition: all .7s ease;
 }
 
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
@@ -77,28 +92,23 @@ a:-webkit-any-link {
 }
 
 
-.h2, h2 {
+.h2,
+h2 {
     font-size: 30px;
     mix-blend-mode: difference;
 }
 
 .col-md-4:hover .img {
-    transform: scale(1.2);
-}
-
-.num, 
-.author, 
-.h2,
-.img {
-    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: scale(1.5);
 }
 
 
-.col-md-4:hover .num, 
-.col-md-4:hover .author, 
+
+.col-md-4:hover .num,
+.col-md-4:hover .author,
 .col-md-4:hover h2 {
-    /* color: #000; */
-    /* mix-blend-mode: darken; */
+    color: #000;
+    mix-blend-mode: darken;
 }
 
 
@@ -156,3 +166,5 @@ p {
         width: 750px;
     } */
 }
+
+

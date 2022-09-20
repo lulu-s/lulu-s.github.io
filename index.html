@@ -31,8 +31,15 @@
         </header>
         <div class="loading" ref="loading" class="no_selected">
             <h1> 小码农的点点滴滴 </h1>
-            <div class="points">
+            <!-- <div class="points">
                 <span v-for="i in 3" class="point"></span>
+            </div> -->
+
+
+            <h2> <a href="https://github.com/lulu-s/lulu-book">博客传送门 <i>Click Me</i></a> </h2>
+            <div class="points">
+                <a href="https://github.com/lulu-s/lulu-book"></a>
+                <!-- <span v-for="i in 3" class="point"></span> -->
             </div>
         </div>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">

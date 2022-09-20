@@ -6,35 +6,22 @@ var shared = {
             title: "Home",
             url: "/index"
         },
-        {
-            title: "Blog",
-            url: "/page/md"
-        },
+        // {
+        //     title: "Blog",
+        //     url: "/page/md"
+        // },
         {
             title: "Viewer",
             url: "/page/visuals",
-            children: [
-                {
-                    key: '01_demo',
-                    url: '/page/demo/01_demo',
-                    title: "Shader Text Canvas",
-                    date: "2022.03.28",
-                    author: 'lulu',
-                    author_url: "https://thebookofshaders.com/04/?lan=ch",
-                    css: {
-                        bg_img: '../../assets/image/cover/01_demo.png'
-                    }
-                }
-            ]
         },
         {
             title: "Reference",
             url: "/page/ref"
         },
-        {
-            title: "About",
-            url: "/page/about"
-        }
+        // {
+        //     title: "About",
+        //     url: "/page/about"
+        // }
     ],
     refs: [
         // {
@@ -44,6 +31,14 @@ var shared = {
         //     date: "添加日期",
         //     key: ['tag1', 'tag1', 'tag1'] 
         // },
+        {
+            link: 'https://dailycssdesign.com/',
+            cover: '../../assets/image/refs/dailycssdesign.png',
+            title: "DailyCssDesign",
+            subtitle: "每日创建一个设计",
+            date: "2022.09.20",
+            key: ['shader', 'three.js']
+        },
         {
             link: 'https://codepen.io/vcomics/pens/popular',
             cover: '../../assets/image/refs/Victor Vergara.png',
@@ -116,16 +111,44 @@ var shared = {
     ],
     viewer: [
         {
-            url: '/page/demo/01_demo',
+            url: '/page/demo/1',
             title: "Shader Text Canvas",
             date: "2022.03.28",
             author: 'lulu',
-            link: '../../assets/image/cover/01_demo.png',
-            author_url: "https://thebookofshaders.com/04/?lan=ch",
+            ref: {
+                title: "thebookofshaders",
+                url: "https://thebookofshaders.com/04/?lan=ch",
+            },
             css: {
-                bg_img: '../../assets/image/cover/01_demo.png'
+                bg_img: '../../assets/image/cover/page1.png'
             }
-        }
+        },
+        // {
+        //     url: '/page/demo/2',
+        //     title: "Shader Text Canvas2",
+        //     date: "2022.03.28",
+        //     author: 'lulu',
+        //     ref: {
+        //         title: "thebookofshaders",
+        //         url: "https://thebookofshaders.com/04/?lan=ch",
+        //     },
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page1.png'
+        //     }
+        // },
+        // {
+        //     url: '/page/demo/3',
+        //     title: "Shader Text Canvas3",
+        //     date: "2022.03.28",
+        //     author: 'lulu',
+        //     ref: {
+        //         title: "thebookofshaders",
+        //         url: "https://thebookofshaders.com/04/?lan=ch",
+        //     },
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page1.png'
+        //     }
+        // }
     ],
     lists: [
         {
