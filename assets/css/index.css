@@ -461,13 +461,22 @@ svg.filter {
   margin-top: 1rem;
   /* filter: url('#filter'); */
   transition: all .7s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
-.cover-nav li:hover {
- 
-  transform: scale(1.1) skewX(10deg);
-}
+
 
 .cover-nav li a {
   color: #fff;
   font-family: sans-serif;
+}
+
+.cover-nav li:hover {
+  background: #ffffff;
+  transform: scale(1.1) skewX(10deg);
+  border: 1px solid #e8a811;
+}
+
+.cover-nav li:hover a {
+  color: #e8a811;
 }
