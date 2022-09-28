@@ -12,3 +12,7 @@
 ## 参考
 * [@亚赛](https://wangyasai.github.io/)
 * [@DailyCssDesign](https://dailycssdesign.com/)
+
+
+## 技术学习参考
+* [CSS烟雾效果](https://segmentfault.com/a/1190000041189786)
