@@ -6,10 +6,10 @@ var shared = {
             title: "Home",
             url: "/index"
         },
-        // {
-        //     title: "Blog",
-        //     url: "/page/md"
-        // },
+        {
+            title: "Blog",
+            url: "/page/md"
+        },
         {
             title: "Viewer",
             url: "/page/visuals",

@@ -30,7 +30,8 @@
             </div>
         </header>
         <div class="loading" ref="loading" class="no_selected">
-            <h1 class="cover-title"> 小码农的点点滴滴 </h1>
+            <h1 class="cover-title"> <span>小码农的点点滴滴</span> </h1>
+            <h3 class="cover-subtitle">我的实验练习舒适区 🧪</h3>
             <!-- <div class="points">
                 <span v-for="i in 3" class="point"></span>
             </div> -->
@@ -48,9 +49,9 @@
                 <li><a href="/page/ref">Reference</a></li>
             </ul>
 
-            <div class="points">
-                <!-- <span v-for="i in 3" class="point"></span> -->
-            </div>
+            <!-- <div class="points">
+                <span v-for="i in 3" class="point"></span>
+            </div> -->
         </div>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">

@@ -427,9 +427,27 @@ svg.filter {
 .cover-title {
   /* background: linear-gradient(#fff, #999, #ddd, #888);
   background-clip: text; */
+  /* background: linear-gradient(#fff, #999, #ddd, #888);
+  -webkit-background-clip: text;
+  color: transparent; */
+  
   letter-spacing: 1rem;
   font-size: 5em;
   filter: url('#filter');
+}
+
+.cover-subtitle {
+  color: #888888;
+  font-weight: 300;
+  font-family: sans-serif;
+  margin: 1rem 0;
+}
+
+.cover-title span {
+  /* filter: blur(3px) contrast(120%);
+  background: linear-gradient(#ffffff, #ecb52f, #d263d9, #120a08);
+  -webkit-background-clip: text;
+  color: transparent; */
 }
 
 .cover-nav {
@@ -446,4 +464,5 @@ svg.filter {
 
 .cover-nav li a {
   color: #fff;
+  font-family: sans-serif;
 }
