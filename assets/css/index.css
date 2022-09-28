@@ -460,6 +460,11 @@ svg.filter {
   background: #e8a811;
   margin-top: 1rem;
   /* filter: url('#filter'); */
+  transition: all .7s ease;
+}
+.cover-nav li:hover {
+ 
+  transform: scale(1.1) skewX(10deg);
 }
 
 .cover-nav li a {
