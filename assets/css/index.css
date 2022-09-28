@@ -308,17 +308,7 @@ header {
   }
 }
 
-@media (min-width: 601px) and (max-width: 680px) {
-  h1 {
-    font-size: 3em;
-  }
-}
 
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 2em;
-  }
-}
 
 /* loading */
 .loading {
@@ -393,9 +383,18 @@ footer a:hover {
   color: rgb(31 29 29 / 84%);
 }
 
+a.link {
+  color: #dc9e0e;
+  font-weight: 500;
+  font-family: sans-serif;
+  /* text-shadow: 0 0 #1d1818; */
+  padding: 0 0.5rem;
+}
 
+.message {
+  margin-top: 5rem;
+}
 
-.message {}
 
 .message .title {
   font-family: inherit;
@@ -406,11 +405,11 @@ footer a:hover {
 }
 
 .message p {
-  margin-top: 40px;
+  margin-top: 1.5rem;
   line-height: 250%;
   font-weight: 350;
   text-align: center;
-  font-size: 12pt;
+  font-size: 1.5rem;
   font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 }
 
@@ -424,13 +423,14 @@ svg.filter {
   position: absolute;
   margin-bottom: 1rem;
 }
+
 .cover-title {
   /* background: linear-gradient(#fff, #999, #ddd, #888);
   background-clip: text; */
   /* background: linear-gradient(#fff, #999, #ddd, #888);
   -webkit-background-clip: text;
   color: transparent; */
-  
+
   letter-spacing: 1rem;
   filter: url('#filter');
 }
@@ -453,6 +453,7 @@ svg.filter {
   display: flex;
   list-style: none;
 }
+
 .cover-nav li {
   padding: 0.5rem 1rem;
   margin: 0.5rem 1rem;
@@ -478,4 +479,30 @@ svg.filter {
 
 .cover-nav li:hover a {
   color: #e8a811;
+}
+
+@media (min-width: 601px) and (max-width: 680px) {
+  h1 {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .cover-title {
+    filter: none !important;
+    letter-spacing: 0;
+  }
+
+  .message .title {
+    font-size: 2rem;
+  }
+
+  .message p {
+    font-size: 1.3rem;
+  }
+
 }
