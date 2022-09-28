@@ -7,7 +7,8 @@ body {
     color: #fff;
 }
 
-body, html {
+body,
+html {
     overflow: hidden;
 }
 
@@ -18,7 +19,7 @@ h1 {
 
 .arrow {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 20px 0;
@@ -44,7 +45,7 @@ a {
     font-size: 16px;
 }
 
-.item-link{ 
+.item-link {
     color: #fff;
     transition: transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -webkit-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -moz-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38), -o-transform 0.5s cubic-bezier(0.42, 0.01, 0.17, 1.38);
 }
@@ -83,8 +84,9 @@ a {
 .item-arrow-right {
     margin-left: 5px;
 }
+
 .item-arrow-left:after {
-    border-right: 7px solid ;
+    border-right: 7px solid;
     left: -7px;
 }
 
@@ -94,7 +96,7 @@ a {
 }
 
 
-.item-arrow, 
+.item-arrow,
 .item-text {
     display: inline-block;
     vertical-align: middle;
@@ -135,8 +137,9 @@ a {
 .next:hover .item-arrow {
     transform: translateX(10px);
 }
+
 .prev:hover .item-link,
-.next:hover .item-link{
+.next:hover .item-link {
     /* transform: translateX(10px); */
     color: #ff3b7d;
 }
@@ -153,4 +156,29 @@ a {
     bottom: 0;
     right: 0;
     overflow: hidden;
+}
+
+header {
+    position: absolute;
+    z-index: 9999;
+}
+
+
+.demo-title {
+    font-weight: 550;
+    font-size: 32px;
+    line-height: 1.3;
+    margin: 0;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 50;
+    cursor: pointer;
+
+    transition: all .7s ease;
+}
+
+
+.demo-title:hover a {
+    color: #f3b933;
 }
