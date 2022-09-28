@@ -21,7 +21,7 @@
 <body>
     <div ref="app" id="app">
         <header>
-           <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
+            <a href="https://lulu-s.github.io/"><img class="target-logo" src="./assets/logo.png" alt=""></a>
             <div class="target-hamburger" @click="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
@@ -30,15 +30,25 @@
             </div>
         </header>
         <div class="loading" ref="loading" class="no_selected">
-            <h1> 小码农的点点滴滴 </h1>
+            <h1 class="cover-title"> 小码农的点点滴滴 </h1>
             <!-- <div class="points">
                 <span v-for="i in 3" class="point"></span>
             </div> -->
 
+            <svg class="filter" width="0">
+                <filter id="filter">
+                    <feTurbulence id="turbulence" type="fractalNoise" baseFrequency=".03" numOctaves="20" />
+                    <feDisplacementMap in="SourceGraphic" scale="30" />
+                </filter>
+            </svg>
 
-            <h2> <a href="https://github.com/lulu-s/lulu-book">博客传送门 <i>Click Me</i></a> </h2>
+            <ul class="cover-nav">
+                <li><a href="https://github.com/lulu-s/lulu-book">Blog</a></li>
+                <li><a href="/page/visuals">Visuals</a></li>
+                <li><a href="/page/ref">Reference</a></li>
+            </ul>
+
             <div class="points">
-                <a href="https://github.com/lulu-s/lulu-book"></a>
                 <!-- <span v-for="i in 3" class="point"></span> -->
             </div>
         </div>
@@ -54,6 +64,29 @@
     </div>
     <script src="./src/index.js"></script>
     <!-- <script src="./src/home/home.js"></script> -->
+    <script>
+        const filter = document.querySelector("#turbulence");
+        let frames = 1;
+        let rad = Math.PI / 180;
+        let bfx, bfy;
+
+        function freqAnimation() {
+            frames += .3
+
+            bfx = 0.03;
+            bfy = 0.03;
+
+            bfx += 0.005 * Math.cos(frames * rad);
+            bfy += 0.005 * Math.sin(frames * rad);
+
+            bf = bfx.toString() + " " + bfy.toString();
+            filter.setAttributeNS(null, "baseFrequency", bf);
+
+            window.requestAnimationFrame(freqAnimation);
+        }
+
+        window.requestAnimationFrame(freqAnimation);
+    </script>
 </body>
 
 </html>
