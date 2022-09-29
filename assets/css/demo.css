@@ -206,11 +206,12 @@ header {
 }
 
 .content h2 {
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.8rem;
     font-weight: 400;
     font-family: sans-serif;
     text-transform: uppercase;
     text-align: center;
+    font-size: 30px;
 }
 
 
