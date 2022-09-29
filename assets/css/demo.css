@@ -186,6 +186,7 @@ header {
 .github {
     margin-top: 1rem;
 }
+
 .github:hover .git-main {
     fill: #ff3b7d;
     transition: all .3s ease;
@@ -209,4 +210,13 @@ header {
     font-weight: 400;
     font-family: sans-serif;
     text-transform: uppercase;
+}
+
+
+@media (max-width: 600px) {
+    .demo-title {
+        top: 10px;
+        left: 10px;
+        font-size: 25px;
+    }
 }
