@@ -219,4 +219,8 @@ header {
         left: 10px;
         font-size: 25px;
     }
+
+    .github svg {
+        width: 20px;
+    }
 }
