@@ -3,18 +3,22 @@
 var shared = {
     menu: [
         {
+            name: '主页',
             title: "Home",
             url: "/index"
         },
         {
+            name: '博客',
             title: "Blog",
             url: "/page/md"
         },
         {
+            name: '日常练习',
             title: "Viewer",
             url: "/page/visuals",
         },
         {
+            name: '参考库',
             title: "Reference",
             url: "/page/ref"
         },
@@ -126,6 +130,19 @@ var shared = {
         // {
         //     url: '/page/demo/2',
         //     title: "Shader Text Canvas2",
+        //     date: "2022.03.28",
+        //     author: 'lulu',
+        //     ref: {
+        //         title: "thebookofshaders",
+        //         url: "https://thebookofshaders.com/04/?lan=ch",
+        //     },
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page1.png'
+        //     }
+        // },
+        // {
+        //     url: '/page/demo/3',
+        //     title: "Shader Text Canvas3",
         //     date: "2022.03.28",
         //     author: 'lulu',
         //     ref: {

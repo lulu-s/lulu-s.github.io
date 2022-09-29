@@ -23,8 +23,7 @@ h1 {
     align-items: center;
     width: 100%;
     padding: 20px 0;
-    bottom: 30px;
-
+    bottom: 10px;
 }
 
 
@@ -33,7 +32,6 @@ a {
     text-transform: capitalize;
     display: block;
     transition: color 0.12s;
-
     color: #fff;
 }
 
@@ -100,6 +98,8 @@ a {
 .item-text {
     display: inline-block;
     vertical-align: middle;
+    font-family: sans-serif;
+    font-weight: 500;
 }
 
 
@@ -179,6 +179,34 @@ header {
 }
 
 
-.demo-title:hover a {
-    color: #f3b933;
+.title:hover {
+    color: #ff3b7d;
+}
+
+.github {
+    margin-top: 1rem;
+}
+.github:hover .git-main {
+    fill: #ff3b7d;
+    transition: all .3s ease;
+}
+
+
+.content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mix-blend-mode: lighten;
+}
+
+.content h2 {
+    letter-spacing: 0.5rem;
+    font-weight: 400;
+    font-family: sans-serif;
+    text-transform: uppercase;
 }

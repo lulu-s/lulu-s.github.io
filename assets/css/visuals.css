@@ -21,33 +21,87 @@ a:-webkit-any-link {
 
 .container {
     width: 100%;
-    /* padding-right: 15px;
-    padding-left: 15px; */
     margin-right: auto;
     margin-left: auto;
     margin-top: 30px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    min-height: 2px;
+    align-content: flex-start;
+    justify-content: flex-end;
 }
 
 .col-md-4 {
     position: relative;
-    padding-right: 15px;
-    padding-left: 15px;
+    /* padding-right: 15px;
+    padding-left: 15px; */
     text-align: center;
     /* border: 1px solid #1919701a; */
-    height: 200px;
+    /* height: 200px; */
+    /* height: 280px; */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.img {
+.col-md-4:after {
+    content: '';
+    display: block;
+    background-color: inherit;
+    -webkit-transition: 3s -webkit-transform cubic-bezier(0.23, 1, 0.32, 1);
+    transition: 3s transform cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: .9;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: scale(2) translateX(-100%) translateY(-100%) translateZ(0px) rotate(-45deg);
+    transform: scale(2) translateX(-100%) translateY(-100%) translateZ(0px) rotate(-45deg);
+}
+
+.col-md-4 a {
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.image-background {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+}
+
+/* .ratio.ratio-16-9::before {
+    padding-top: 56%;
+} */
+.image-background::before {
+    content: '';
+    display: block;
+    padding-top: 56%;
+}
+
+.img {
+    width: 100%;
+        height: auto;
     position: absolute;
     left: 0;
     top: 0;
     object-fit: cover;
+    /* object-fit: fill; */
 
     transition: all .5s ease;
 }
@@ -149,6 +203,13 @@ p {
 }
 
 
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+
 @media (min-width: 992px) {
     .container {
         margin-top: 45px;
@@ -168,3 +229,16 @@ p {
 }
 
 
+
+
+@media (max-width: 991px) {
+    .container {
+        margin-top: 45px;
+    }
+
+    .col-md-4 {
+        width: 100%;
+        float: left;
+    }
+
+}

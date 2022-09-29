@@ -2,7 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: PingFangSC-Semibold, sans-serif;
+  font-family: "Montserrat", PingFangSC-Semibold, "Helvetica Neue", Helvetica, Arial, sans-serif,  sans-serif;
 }
 
 html {
@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "Montserrat",  "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -384,11 +384,24 @@ footer a:hover {
 }
 
 a.link {
-  color: #dc9e0e;
-  font-weight: 500;
+  /* color: #dc9e0e; */
+  color: #696864;
+  font-weight: 400;
   font-family: sans-serif;
   /* text-shadow: 0 0 #1d1818; */
   padding: 0 0.5rem;
+  text-decoration: revert;
+}
+
+
+a.author {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: initial;
+  color: #fff;
+  opacity: 0.2;
+  transition: color 0.12s, opacity 0.12s;
 }
 
 .message {
@@ -416,6 +429,10 @@ a.link {
 a.link:hover {
   color: #fff;
   background: #e8a811;
+}
+a.author:hover {
+  color: #ff3b7d;
+  opacity: 1;
 }
 
 

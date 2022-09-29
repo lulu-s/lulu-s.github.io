@@ -20,7 +20,7 @@
 
         <header>
             <a href="https://lulu-s.github.io/"><img class="target-logo" src="../assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu"  >
+            <div class="target-hamburger" @click="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
@@ -30,20 +30,28 @@
         <main>
             <div class="message">
                 <div class="title">自习室</div>
-                <p>受 <a class="link" href="https://wangyasai.github.io/Daily/">@亚赛</a>  和 <a class="link" href="https://dailycssdesign.com/">@DailyCssDesign</a> 的打卡影响， <br/> 用网页的形式记录视觉 Demo。  <br/> </p>
+                <p>受 <a class="link" href="https://wangyasai.github.io/Daily/">@亚赛</a> 和 <a class="link"
+                        href="https://dailycssdesign.com/">@DailyCssDesign</a> 的打卡影响， <br /> 用网页的形式记录视觉 Demo。 <br />
+                </p>
+                <!-- <p>  日常练习的视觉 Demo。 </p> -->
             </div>
             <div class="container">
-                <a class="col-md-4" 
-                    v-for="(v, i) in shared.viewer"
-                    :href="v.url">
-                    <img class="img" :src="v.css.bg_img" alt="">
-                    <!-- <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
+                <div class="col-md-4" v-for="(v, i) in shared.viewer">
+                     <div class="image-background">
+                        <img class="img" :src="v.css.bg_img" alt="">
+
+                    </div> 
+                    <a :href="v.url">
+                        <!-- <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
                     <h2>{{v.title}}</h2>
                     <div class="author">
                         <span>BY {{v.author}}</span><br>
                         <span>{{v.date}}</span>
                     </div> -->
-                </a>
+                        
+                    </a>
+                </div>
+
             </div>
         </main>
         <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
@@ -52,9 +60,9 @@
                 <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
             </h3>
         </section>
-        <footer>
+        <!-- <footer>
             <a href="https://github.com/lulu-s">@lulu-s</a>
-        </footer>
+        </footer> -->
     </div>
 
 
@@ -67,7 +75,7 @@
             el: '#app',
             data: { shared, state },
             methods: {
-                
+
             },
             methods: {
                 // 点击菜单
