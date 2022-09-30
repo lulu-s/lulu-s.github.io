@@ -1,4 +1,7 @@
 /* article */
+#app {
+  filter: contrast(10);
+}
 .article {
   margin-top: 30px;
   padding: 20px 85px;
@@ -99,7 +102,7 @@
 
 
 .filter-test {
-  filter: contrast(20);
+  /* filter: contrast(20); */
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -123,7 +126,8 @@
 
 .ball1 {
   background: #000;
-  animation: move 4s linear infinite alternate forwards;
+  transform: translateX(20px);
+  animation: move-big 2s linear infinite alternate forwards;
 }
 .ball2 {
   width: 35px;
@@ -133,9 +137,18 @@
 
 @keyframes move {
   0% {
-    transform: translateX(60px);
+    transform: translateX(50px);
   }
   100% {
-    transform: translateX(-60px);
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes move-big {
+  0% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(40px);
   }
 }
