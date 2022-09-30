@@ -16,3 +16,4 @@
 
 ## 技术学习参考
 * [CSS烟雾效果](https://segmentfault.com/a/1190000041189786)
+* [CSS粘性气泡](https://github.com/chokcoco/iCSS/issues/188)

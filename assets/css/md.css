@@ -95,3 +95,47 @@
     z-index: 9;
   }
 }
+
+
+
+.filter-test {
+  filter: contrast(20);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+
+.ball {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border-radius: 50%;
+  filter: blur(5px);
+}
+
+.ball1 {
+  background: #000;
+  animation: move 4s linear infinite alternate forwards;
+}
+.ball2 {
+  width: 35px;
+  height: 35px;
+  animation: move 4s linear infinite alternate-reverse forwards ;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(60px);
+  }
+  100% {
+    transform: translateX(-60px);
+  }
+}
