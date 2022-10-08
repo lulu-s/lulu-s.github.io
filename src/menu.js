@@ -115,7 +115,7 @@ var shared = {
     ],
     viewer: [
         {
-            url: '/demo/1/index.html#1',
+            url: '/examples/1/index.html#1',
             title: "Shader Demo",
             date: "2022.03.28",
             author: 'lulu',
@@ -128,16 +128,25 @@ var shared = {
             }
         },
         {
-            url: '/demo/2/index.html#2',
+            url: '/examples/2/index.html#2',
             title: "Water Shader Demo",
-            date: "2022.03.28",
+            date: "2022.10.08",
             author: 'lulu',
             ref: {
                 title: "thebookofshaders",
-                url: "https://thebookofshaders.com/04/?lan=ch",
+                url: ["https://threejs.org/examples/webgl_water.html", "https://threejs.org/examples/webgl_shaders_ocean.html"],
             },
             css: {
-                bg_img: '../../assets/image/cover/page1.png'
+                bg_img: '../../assets/image/cover/page2.png'
+            }
+        },
+        {
+            url: '/examples/3/index.html#3',
+            title: "🚩 Fly the national flag",
+            date: "2022.02.17",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/page3.png'
             }
         },
         // {

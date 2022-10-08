@@ -7,11 +7,11 @@
     <link rel="shortcut icon" href="../../../assets/lulu.ico">
     <link rel="bookmark" href="../../../assets/lulu.ico">
     <title>Shader Text Canvas</title>
-    <script src="../../../assets/lib/vue.min.js"></script>
+    <script src="../../../src/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../../assets/css/index.css">
     <link rel="stylesheet" href="../../../assets/css/demo.css">
-    <script src="../../../assets/lib/util.js"></script>
-    <script src="../../../assets/lib/three.min.js"></script>
+    <script src="../../../src/lib/util.js"></script>
+    <script src="../../../src/lib/three.min.js"></script>
     <script src="../../../src/menu.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <style>
@@ -145,7 +145,7 @@
             renderer = new THREE.WebGLRenderer();
             renderer.setPixelRatio(window.devicePixelRatio);
 
-            container.appendChild(renderer.domElement);
+            // container.appendChild(renderer.domElement);
 
             onWindowResize();
             window.addEventListener('resize', onWindowResize, false);
