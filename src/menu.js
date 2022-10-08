@@ -140,19 +140,19 @@ var shared = {
                 bg_img: '../../assets/image/cover/page1.png'
             }
         },
-        {
-            url: '/demo/3/index.html#3',
-            title: "Shader Text Canvas3",
-            date: "2022.03.28",
-            author: 'lulu',
-            ref: {
-                title: "thebookofshaders",
-                url: "https://thebookofshaders.com/04/?lan=ch",
-            },
-            css: {
-                bg_img: '../../assets/image/cover/page1.png'
-            }
-        },
+        // {
+        //     url: '/demo/3/index.html#3',
+        //     title: "Shader Text Canvas3",
+        //     date: "2022.03.28",
+        //     author: 'lulu',
+        //     ref: {
+        //         title: "thebookofshaders",
+        //         url: "https://thebookofshaders.com/04/?lan=ch",
+        //     },
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page1.png'
+        //     }
+        // },
         // {
         //     url: '/page/demo/3',
         //     title: "Shader Text Canvas3",
