@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,13 @@
     <script src="../assets/lib/util.js"></script>
     <script src="../src/menu.js"></script>
 </head>
+
 <body>
     <div id="app">
 
         <header>
             <a href="https://lulu-s.github.io/"><img class="target-logo" src="../assets/logo.png" alt=""></a>
-            <div class="target-hamburger" @click="click_menu" >
+            <div class="target-hamburger" @click="click_menu">
                 <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
                     <li class="bun"></li>
                     <li class="bun"></li>
@@ -41,10 +43,30 @@
             <a href="https://github.com/lulu-s">@lulu-s</a>
             
         </footer> -->
-        <div class="filter-test">
+        <div class="filter-test2">
+            <div class="ball22 ball2-1"></div>
+            <div class="ball22 ball2-2"></div>
+        </div>
+        <div class="g-wrap">
+            <div class="filter-test">
                 <div class="ball ball1"></div>
                 <div class="ball ball2"></div>
+                <div class="ball ball2"></div>
+                <div class="ball ball2"></div>
+            </div>
+            <svg class="filter" width="0">
+                <defs>
+                    <filter id="blob">
+                        <!-- TODO 在 iphone13 机型上闪烁 -->
+                        <feGaussianBlur id="SourceGraphic" stdDeviation="11" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0, 0 1 0 0 0,  0 0 1 0 0 , 0 0 0 19 -9"
+                            result="blob" />
+                    </filter>
+                </defs>
+            </svg>
         </div>
+
+
     </div>
 
     <script>
@@ -64,4 +86,5 @@
         })
     </script>
 </body>
+
 </html>

@@ -1,7 +1,9 @@
-/* article */
-#app {
-  filter: contrast(10);
+body {
+  /* filter: contrast(10); */
 }
+
+
+/* article */
 .article {
   margin-top: 30px;
   padding: 20px 85px;
@@ -101,8 +103,7 @@
 
 
 
-.filter-test {
-  /* filter: contrast(20); */
+/* .filter-test {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -112,6 +113,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  filter: contrast(20);
   background: #fff;
 }
 
@@ -135,6 +138,59 @@
   animation: move 4s linear infinite alternate-reverse forwards ;
 }
 
+ */
+
+
+ /* 模式1 svg */
+
+.filter-test {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter:url(#blob);
+  /* background: #fff; */
+}
+.ball {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 50px;
+  background: #000;
+  border-radius: 50%;
+  /* transform:translate(-50%, 100%); */
+}
+.ball1 {
+  /* transform: translateX(20px); */
+  animation: move-pos-big 2s linear infinite alternate forwards;
+}
+.ball2 {
+  width: 35px;
+  height: 35px;
+  animation: move-pos 4s linear infinite alternate-reverse forwards ;
+}
+@keyframes move-pos {
+  0% {
+    left: 1rem;
+  }
+  100% {
+    left: 2rem;
+  }
+}
+
+@keyframes move-pos-big {
+  0% {
+    left: 1rem;
+  }
+  100% {
+    left: 7rem;
+  }
+}
 @keyframes move {
   0% {
     transform: translateX(50px);
@@ -151,4 +207,40 @@
   100% {
     transform: translateX(40px);
   }
+}
+
+/* 模式2 filter */
+.filter-test2 {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  filter: contrast(10);
+  background: #fff;
+}
+
+
+.ball22 {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border-radius: 50%;
+  filter: blur(5px);
+}
+
+.ball2-1 {
+  background: #000;
+  transform: translateX(20px);
+  animation: move-big 2s linear infinite alternate forwards;
+}
+.ball2-2 {
+  width: 35px;
+  height: 35px;
+  animation: move 4s linear infinite alternate-reverse forwards ;
 }

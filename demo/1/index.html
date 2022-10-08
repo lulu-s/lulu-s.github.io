@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="shortcut icon" href="../../assets/lulu.ico">
-    <link rel="bookmark" href="../../assets/lulu.ico">
+    <link rel="shortcut icon" href="../../../assets/lulu.ico">
+    <link rel="bookmark" href="../../../assets/lulu.ico">
     <title>Shader Text Canvas</title>
-    <script src="../../assets/lib/vue.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/index.css">
-    <link rel="stylesheet" href="../../assets/css/demo.css">
-    <script src="../../assets/lib/util.js"></script>
-    <script src="../../assets/lib/three.min.js"></script>
-    <script src="../../src/menu.js"></script>
+    <script src="../../../assets/lib/vue.min.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/index.css">
+    <link rel="stylesheet" href="../../../assets/css/demo.css">
+    <script src="../../../assets/lib/util.js"></script>
+    <script src="../../../assets/lib/three.min.js"></script>
+    <script src="../../../src/menu.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <style>
 
@@ -55,14 +55,14 @@
         <footer class="arrow">
 
             <span class="prev " v-if="state.id != 0">
-                <a class=" item-link" :href="(state.id + 1 - 1)+'.html'">
+                <a class=" item-link" :href="'../' + (state.id + 1 - 1)+'/index.html#' + (state.id + 1 - 1)">
                     <span class="item-arrow item-arrow-left"></span>
                     <span class="item-text">prev</span>
                 </a>
             </span>
             <!-- <a class="author" href="https://github.com/lulu-s">@lulu-s</a> -->
             <span class="next" v-if="state.id < shared.viewer.length - 1">
-                <a class=" item-link" :href="(state.id + 1 + 1)+'.html'">
+                <a class=" item-link" :href="'../' + (state.id + 1 + 1)+'/index.html#' + (state.id + 1 + 1)">
                     <span class="item-text">next</span>
                     <span class="item-arrow item-arrow-right"></span>
                 </a>
@@ -88,7 +88,8 @@
         }
     </script>
     <script>
-        var tem_arr = location.href.split('/');
+        var tem_arr = location.href.split('#');
+        console.log(tem_arr);
         var state = {
             open_menu: false,
             id: parseInt(tem_arr[tem_arr.length - 1]) - 1
