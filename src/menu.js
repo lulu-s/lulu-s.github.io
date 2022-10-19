@@ -127,28 +127,28 @@ var shared = {
                 bg_img: '../../assets/image/cover/page1.png'
             }
         },
-        {
-            url: '/examples/2/index.html#2',
-            title: "Water Shader Demo",
-            date: "2022.10.08",
-            author: 'lulu',
-            ref: {
-                title: "thebookofshaders",
-                url: ["https://threejs.org/examples/webgl_water.html", "https://threejs.org/examples/webgl_shaders_ocean.html"],
-            },
-            css: {
-                bg_img: '../../assets/image/cover/page2.png'
-            }
-        },
-        {
-            url: '/examples/3/index.html#3',
-            title: "🚩 Fly the national flag",
-            date: "2022.02.17",
-            author: 'lulu',
-            css: {
-                bg_img: '../../assets/image/cover/page3.png'
-            }
-        },
+        // {
+        //     url: '/examples/2/index.html#2',
+        //     title: "Water Shader Demo",
+        //     date: "2022.10.08",
+        //     author: 'lulu',
+        //     ref: {
+        //         title: "thebookofshaders",
+        //         url: ["https://threejs.org/examples/webgl_water.html", "https://threejs.org/examples/webgl_shaders_ocean.html"],
+        //     },
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page2.png'
+        //     }
+        // },
+        // {
+        //     url: '/examples/3/index.html#3',
+        //     title: "🚩 Fly the national flag",
+        //     date: "2022.02.17",
+        //     author: 'lulu',
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page3.png'
+        //     }
+        // },
         // {
         //     url: '/demo/3/index.html#3',
         //     title: "Shader Text Canvas3",
