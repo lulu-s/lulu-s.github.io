@@ -226,8 +226,7 @@ header {
     font-size: 48px;
 }
 
-
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .demo-title {
         top: 10px;
         left: 10px;
@@ -237,4 +236,20 @@ header {
     .github svg {
         width: 20px;
     }
+
+    #visual_dom canvas {
+        width: 100%;
+        height: auto !important;
+    }
 }
+
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px){
+    #visual_dom canvas {
+        width: 100%;
+        height: auto !important;
+    }
+}
+

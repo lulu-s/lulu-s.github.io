@@ -91,7 +91,7 @@
             id: parseInt(tem_arr[tem_arr.length - 1]) - 1
         }
 
-        console.log(shared.elements);
+        // console.log(shared.elements);
 
         var cur = shared.elements[state.id]
 
@@ -166,6 +166,16 @@
             requestAnimationFrame(draw)
         }
 
+
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            side = (window.innerHeight * 0.7 > side ? side :  window.innerHeight * 0.7) ;
+            console.log(side);
+
+            dpi = window.devicePixelRatio
+            canvas.width = side * dpi;
+            canvas.height = side * dpi;
+        }
 
         requestAnimationFrame(draw)
 
