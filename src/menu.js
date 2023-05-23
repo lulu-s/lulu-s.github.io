@@ -18,6 +18,11 @@ var shared = {
             url: "/page/visuals",
         },
         {
+            name: '基础元件',
+            title: "Element",
+            url: "/page/elements",
+        },
+        {
             name: '参考库',
             title: "Reference",
             url: "/page/ref"
@@ -127,6 +132,19 @@ var shared = {
                 bg_img: '../../assets/image/cover/page1.png'
             }
         },
+        {
+            url: '/examples/2/index.html#2',
+            title: "Shader Demo2",
+            date: "2023.02.01",
+            author: 'lulu',
+            ref: {
+                title: "Three.js 进阶之旅：Shader着色器基础图案-旷野之息神庙铁球 ",
+                url: ["https://juejin.cn/post/7158628520623603748"],
+            },
+            css: {
+                bg_img: '../../assets/image/cover/page2.png'
+            }
+        },
         // {
         //     url: '/examples/2/index.html#2',
         //     title: "Water Shader Demo",
@@ -149,32 +167,17 @@ var shared = {
         //         bg_img: '../../assets/image/cover/page3.png'
         //     }
         // },
-        // {
-        //     url: '/demo/3/index.html#3',
-        //     title: "Shader Text Canvas3",
-        //     date: "2022.03.28",
-        //     author: 'lulu',
-        //     ref: {
-        //         title: "thebookofshaders",
-        //         url: "https://thebookofshaders.com/04/?lan=ch",
-        //     },
-        //     css: {
-        //         bg_img: '../../assets/image/cover/page1.png'
-        //     }
-        // },
-        // {
-        //     url: '/page/demo/3',
-        //     title: "Shader Text Canvas3",
-        //     date: "2022.03.28",
-        //     author: 'lulu',
-        //     ref: {
-        //         title: "thebookofshaders",
-        //         url: "https://thebookofshaders.com/04/?lan=ch",
-        //     },
-        //     css: {
-        //         bg_img: '../../assets/image/cover/page1.png'
-        //     }
-        // }
+    ],
+    elements: [
+        {
+            url: '/elements/1/index.html#1',
+            title: "旋转的圆 + 字",
+            date: "2022.05.23",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/element-circle.png'
+            }
+        }
     ],
     lists: [
         {

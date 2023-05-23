@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="shortcut icon" href="../../../assets/lulu.ico">
+    <link rel="bookmark" href="../../../assets/lulu.ico">
+    <title>旋转的圆 + 字</title>
+    <script src="../../../src/lib/vue.min.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/index.css">
+    <link rel="stylesheet" href="../../../assets/css/demo.css">
+    <script src="../../../src/lib/util.js"></script>
+    <script src="../../../src/lib/three.min.js"></script>
+    <script src="../../../src/menu.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+    <style>
+        #visual_dom canvas {
+            height: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <header>
+            <!-- <a href="/page/visuals"><img class="target-logo" src="../../assets/logo.png" alt=""></a> -->
+            <!-- <a href="https://lulu-s.github.io/"><img class="target-logo" src="../../assets/logo.png" alt=""></a>
+            <div class="target-hamburger" @click="click_menu">
+                <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
+                    <li class="bun"></li>
+                    <li class="bun"></li>
+                </ul>
+            </div> -->
+
+            <h1 class="demo-title"><a class="title" href="/page/elements">Web<br /> Base<br /> Element <br /> </a>
+
+                <a class="github" href="https://github.com/lulu-s"><svg t="1664427615746" class="icon"
+                        viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2687"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30">
+                        <path
+                            d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667"
+                            class="git-main" fill="#fff" p-id="2688"></path>
+                    </svg></a>
+            </h1>
+        </header>
+
+        <div id="visual_dom">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="content">
+            <h2>{{cur.title}}</h2>
+        </div>
+
+
+        <!-- <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
+            <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
+                <a :href="v.url">{{v.title}}</a>
+            </h3>
+        </section> -->
+
+
+        <footer class="arrow">
+
+            <span class="prev " v-if="state.id != 0">
+                <a class=" item-link" :href="'../' + (state.id + 1 - 1)+'/index.html#' + (state.id + 1 - 1)">
+                    <span class="item-arrow item-arrow-left"></span>
+                    <span class="item-text">prev</span>
+                </a>
+            </span>
+            <!-- <a class="author" href="https://github.com/lulu-s">@lulu-s</a> -->
+            <span class="next" v-if="state.id < shared.elements.length - 1">
+                <a class=" item-link" :href="'../' + (state.id + 1 + 1)+'/index.html#' + (state.id + 1 + 1)">
+                    <span class="item-text">next</span>
+                    <span class="item-arrow item-arrow-right"></span>
+                </a>
+            </span>
+            <div class="date">Be born in {{cur.date}}<br /></div>
+            <!-- example be from <a :href="cur.ref.url">{{cur.ref.title}}</a> -->
+        </footer>
+    </div>
+
+
+
+    <script>
+        var tem_arr = location.href.split('#');
+        var state = {
+            open_menu: false,
+            id: parseInt(tem_arr[tem_arr.length - 1]) - 1
+        }
+
+        console.log(shared.elements);
+
+        var cur = shared.elements[state.id]
+
+        new Vue({
+            el: '#app',
+            data: { shared, state, cur },
+            methods: {
+                // 点击菜单
+                click_menu() {
+                    state.open_menu = !state.open_menu;
+                }
+            }
+        })
+
+        var canvas = document.querySelector('#canvas');
+        var dpi = 2;
+        var side = 512;
+        canvas.width = side * dpi;
+        canvas.height = side * dpi;
+        // canvas.style.width = side + 'px';
+        // canvas.style.height = side + 'px';
+        var ctx = canvas.getContext('2d');
+        var count = 100;
+        var R = 220;
+        var num = 0;
+        var text = 'lulu'
+
+        ctx.font = "10px";
+        let font_width = ctx.measureText(text).width;
+
+        function draw() {
+            num += 0.001;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.scale(dpi, dpi)
+            // ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+            // ctx.fillRect(0, 0, side, side);
+
+
+            for (let i = 0; i < count; i++) {
+                var deg = Math.PI * 2 / count * i
+                ctx.save();
+                ctx.fillStyle = "rgba(255, 255, 255, 1)";
+                ctx.translate(side / 2, side / 2);
+                ctx.rotate(num);
+                ctx.rotate(deg);
+                ctx.translate(R * 0.8, 0);
+                ctx.fillRect(0, 1, 10, 2)
+
+
+                ctx.restore();
+
+                if (i % 2 == 0) {
+                    ctx.save();
+                    ctx.fillStyle = "rgba(255, 255, 255, 1)";
+                    ctx.translate(side / 2, side / 2);
+                    // ctx.rotate(num);
+                    //  ctx.translate(R, 0);
+
+                    ctx.fillText(text,
+                        Math.sin(deg - num) * R - font_width / 2,
+                        Math.cos(deg - num) * R)
+                    ctx.restore();
+                }
+
+
+            }
+
+            ctx.restore();
+
+
+            requestAnimationFrame(draw)
+        }
+
+
+        requestAnimationFrame(draw)
+
+
+    </script>
+</body>
+
+</html>

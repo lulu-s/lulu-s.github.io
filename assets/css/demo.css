@@ -27,6 +27,15 @@ h1 {
 }
 
 
+.date {
+    position: absolute;
+    color: #fff;
+    right: 1.5rem;
+    font-weight: 100;
+    font-family: sans-serif, sans-serif;
+    mix-blend-mode: difference;
+}
+
 a {
     /* color: #fff; */
     text-transform: capitalize;
@@ -156,6 +165,9 @@ a {
     bottom: 0;
     right: 0;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header {

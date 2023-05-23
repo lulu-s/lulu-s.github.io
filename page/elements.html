@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <link rel="shortcut icon" href="../assets/lulu.ico">
+    <link rel="bookmark" href="../assets/lulu.ico">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/visuals.css">
+    <script src="../src/lib/vue.min.js"></script>
+    <script src="../src/lib/util.js"></script>
+    <script src="../src/menu.js"></script>
+    <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <header>
+            <a href="https://lulu-s.github.io/"><img class="target-logo" src="../assets/logo.png" alt=""></a>
+            <div class="target-hamburger" @click="click_menu">
+                <ul class="hamburger" :class="{active: state.open_menu}" style="z-index: 5;">
+                    <li class="bun"></li>
+                    <li class="bun"></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="message">
+                <div class="title">基础元件</div>
+                <p> 
+                    存档日常绘制的基础元素，公式可视化
+                </p>
+                <!-- <p>  日常练习的视觉 Demo。 </p> -->
+            </div>
+            <div class="container">
+                <div class="col-md-4" v-for="(v, i) in shared.elements">
+                     <div class="image-background">
+                        <img class="img" :src="v.css.bg_img" alt="">
+
+                    </div> 
+                    <a :href="v.url">
+                        <!-- <div class="num">{{i < 10 ? "0" + (i + 1) : i}}</div>
+                    <h2>{{v.title}}</h2>-->
+                    <div class="author">
+                        <span>BY {{v.author}}</span><br>
+                        <span>{{v.date}}</span>
+                    </div> 
+                        
+                    </a>
+                </div>
+
+            </div>
+        </main>
+        <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
+            <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
+                <a :href="v.url">{{v.title}}</a>
+                <!-- <router-link :to="v.url">{{v.title}}</router-link> -->
+            </h3>
+        </section>
+        <!-- <footer>
+            <a href="https://github.com/lulu-s">@lulu-s</a>
+        </footer> -->
+    </div>
+
+
+    <script>
+        var state = {
+            open_menu: false
+        }
+        Vue.use(VueLazyload)
+        new Vue({
+            el: '#app',
+            data: { shared, state },
+            methods: {
+
+            },
+            methods: {
+                // 点击菜单
+                click_menu() {
+                    state.open_menu = !state.open_menu;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
