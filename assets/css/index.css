@@ -509,11 +509,6 @@ svg.filter {
     font-size: 2em;
   }
 
-  .cover-title {
-    /* filter: none !important;
-    letter-spacing: 0; */
-  }
-
   .message .title {
     font-size: 2rem;
   }

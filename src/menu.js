@@ -177,6 +177,15 @@ var shared = {
             css: {
                 bg_img: '../../assets/image/cover/element-circle.png'
             }
+        },
+        {
+            url: '/elements/2/index.html#2',
+            title: "横向无限滚动",
+            date: "2023.09.19",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/无限滚动.png'
+            }
         }
     ],
     lists: [
