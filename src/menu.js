@@ -41,6 +41,38 @@ var shared = {
         //     key: ['tag1', 'tag1', 'tag1'] 
         // },
         {
+            link: 'https://graphtoy.com/',
+            cover: '../../assets/image/refs/graphtoy.png',
+            title: "Graphtoy",
+            subtitle: "公式可视化",
+            date: "2022.12.15",
+            key: ['数学', '公式', '可视化']
+        },
+        {
+            link: 'https://discoverthreejs.com/',
+            cover: '../../assets/image/refs/discoverthreejs.png',
+            title: "DISCOVER Threejs",
+            subtitle: "threejs 教程",
+            date: "2022.12.15",
+            key: ['教学', 'threejs']
+        },
+        {
+            link: 'https://cssgridgarden.com/#zh-cn',
+            cover: '../../assets/image/refs/cssgridgarden.png',
+            title: "CSS Grid Garden",
+            subtitle: "学习 css grid 属性",
+            date: "2022.12.15",
+            key: ['教学', 'css', 'game']
+        },
+        {
+            link: 'https://threejs-journey.com/',
+            cover: '../../assets/image/refs/threejs-journey.png',
+            title: "Threejs Journey",
+            subtitle: "threejs 课程",
+            date: "2022.12.15",
+            key: ['教学', 'three.js']
+        },
+        {
             link: 'https://dailycssdesign.com/',
             cover: '../../assets/image/refs/dailycssdesign.png',
             title: "DailyCssDesign",
@@ -184,9 +216,19 @@ var shared = {
             date: "2023.09.19",
             author: 'lulu',
             css: {
-                bg_img: '../../assets/image/cover/无限滚动.png'
+                bg_img: '../../assets/image/cover/element-无限滚动.png'
             }
-        }
+        },
+        {
+            link: 'https://lulu-s.github.io/demo/everyday/index.html',
+            url: '/elements/3/index.html#3',
+            title: "CSS 视觉 Demo",
+            date: "2023.12.15",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/element-css-demo.png'
+            }
+        },
     ],
     lists: [
         {

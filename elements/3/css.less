@@ -1,0 +1,128 @@
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.c_all_demo {
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    height: 80%;
+    /* padding: 15% 0; */
+    top: 18%;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    top: 0;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 15%, #fff 20%, #fff 85%, transparent 90%);
+}
+.c_head {
+    width: 100%;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    font-weight: 500;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.c_btn {
+    font-size: 0.8rem;
+    /* font-style: italic; */
+    color: #ccac12;
+    font-weight: 600;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+.c_tip {
+    font-size: 12px;
+    color: #fff;
+    font-weight: lighter;
+}
+
+.c_exp-code {
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #fff3;
+    overflow: hidden;
+    margin: 20px 0;
+    background: #ffffff17;
+    height: 200px;
+}
+
+.c_exp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 80%;
+}
+
+#demo001 {
+    background: #000;
+   
+    .c_tagline {
+        position: absolute;
+        top: 20%;
+        left: 0;
+        right: 0;
+        padding: 0 50px;
+        font-size: 2.5rem;
+        font-weight: lighter;
+        line-height: 5rem;
+        overflow: hidden;
+        transform: translateX(20%);
+        transition: all .5s .7s cubic-bezier(0.62, 0.45, 0.01, 1.19);
+        background: #fff;
+        color: #000;
+        opacity: 0;
+
+        .c_grad {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: -100%;
+            background: linear-gradient(to right, white 0%, white 34.99%, black 35%, black 86.99%, white 87%, white 100%);
+            transition: all 1.3s ease;
+            transform: translateX(100%);
+            mix-blend-mode: exclusion;
+        }
+
+        .c_content {
+            position: relative;
+            z-index: 999;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        &.c_default,
+        &.active {
+            transform: translateX(0%);
+            opacity: 1;
+
+            .c_grad {
+                transform: translateX(-99%);
+            }
+        }
+
+    }
+
+
+    &:hover {
+        .c_tagline {
+            transform: translateX(20%);
+            opacity: 0;
+
+            .c_grad {
+                transform: translateX(100%);
+            }
+        }
+    }
+}

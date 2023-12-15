@@ -36,7 +36,7 @@ h1 {
     mix-blend-mode: difference;
 }
 
-.date.element {
+.date.center {
     left: 50%;
     transform: translateX(-50%);
 }

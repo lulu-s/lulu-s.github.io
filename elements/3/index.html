@@ -6,19 +6,19 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="shortcut icon" href="../../../assets/lulu.ico">
     <link rel="bookmark" href="../../../assets/lulu.ico">
-    <title>旋转的圆 + 字</title>
+    <title>每日进修一点小视觉</title>
+
+    <link rel="stylesheet/less" type="text/css" href="css.less">
+
+    <script src="//cdn.bootcss.com/less.js/3.0.0/less.min.js"></script>
+    
     <script src="../../../src/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../../assets/css/index.css">
     <link rel="stylesheet" href="../../../assets/css/demo.css">
     <script src="../../../src/lib/util.js"></script>
-    <script src="../../../src/lib/three.min.js"></script>
+    <!-- <script src="../../../src/lib/three.min.js"></script> -->
     <script src="../../../src/menu.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
-    <style>
-        #visual_dom canvas {
-            height: 80%;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -46,21 +46,82 @@
             </h1>
         </header>
 
-        <div id="visual_dom">
-            <canvas id="canvas"></canvas>
+        <div class="c_all_demo">
+            <!-- 001：不一样的入场出场（一） 2022.10.24 -->
+            <section id="demo001" class="c_exp-code">
+                <div class="c_head">
+                    001：不一样的入场出场（一）
+                    <span class="c_tip">鼠标 hover 体验</span>
+                </div>
+                <div class="c_exp">
+                    <div class="c_tagline c_default">
+                        <div class="c_grad"></div>
+                        <div class="c_content">富强、民主、文明、和谐</div>
+                    </div>
+                </div>
+                <!-- <style class="code" contenteditable="true">
+                #demo001 {
+                    background: #000;
+                }
+
+                .c_tagline {
+                    position: absolute;
+                    top: 20%;
+                    left: 0;
+                    right: 0;
+                    padding: 0 50px;
+                    font-size: 3rem;
+                    font-weight: lighter;
+                    line-height: 3rem;
+                    overflow: hidden;
+                    transform: translateX(20%);
+                    transition: all .5s .7s cubic-bezier(0.62, 0.45, 0.01, 1.19);
+                    background: #fff;
+                    color: #000;
+                    opacity: 0;
+                }
+
+                .c_tagline .c_grad {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    right: -100%;
+                    background: linear-gradient(to right, white 0%, white 34.99%, black 35%, black 86.99%, white 87%, white 100%);
+                    transition: all 1.3s ease;
+                    transform: translateX(100%);
+                    mix-blend-mode: exclusion;
+                }
+
+
+                .c_tagline .c_content {
+                    position: relative;
+                    z-index: 999;
+                }
+
+
+                .c_tagline.default,
+                .c_tagline.active {
+                    transform: translateX(0%);
+                    opacity: 1;
+                }
+
+                .c_tagline.active .c_grad,
+                .c_tagline.default .c_grad {
+                    transform: translateX(-99%);
+                }
+
+                #demo001:hover .c_tagline {
+                    transform: translateX(20%);
+                    opacity: 0;
+                }
+
+                #demo001:hover .c_grad {
+                    transform: translateX(100%);
+                }
+            </style> -->
+            </section>
         </div>
-
-        <div class="content">
-            <h2>{{cur.title}}</h2>
-        </div>
-
-
-        <!-- <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
-            <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
-                <a :href="v.url">{{v.title}}</a>
-            </h3>
-        </section> -->
-
 
         <footer class="arrow">
 
@@ -105,86 +166,6 @@
                 }
             }
         })
-
-        var canvas = document.querySelector('#canvas');
-        var dpi = 2;
-        var side = 512;
-        canvas.width = side * dpi;
-        canvas.height = side * dpi;
-        // canvas.style.width = side + 'px';
-        // canvas.style.height = side + 'px';
-        var ctx = canvas.getContext('2d');
-        var count = 100;
-        var R = 220;
-        var num = 0;
-        var text = 'lulu'
-
-        ctx.font = "10px";
-        let font_width = ctx.measureText(text).width;
-
-        function draw() {
-            num += 0.001;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.scale(dpi, dpi)
-            // ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
-            // ctx.fillRect(0, 0, side, side);
-
-
-            for (let i = 0; i < count; i++) {
-                var deg = Math.PI * 2 / count * i
-                ctx.save();
-                ctx.fillStyle = "rgba(255, 255, 255, 1)";
-                ctx.translate(side / 2, side / 2);
-                ctx.rotate(num);
-                ctx.rotate(deg);
-                ctx.translate(R * 0.8, 0);
-                ctx.fillRect(0, 1, 10, 2)
-
-
-                ctx.restore();
-
-                if (i % 2 == 0) {
-                    ctx.save();
-                    ctx.fillStyle = "rgba(255, 255, 255, 1)";
-                    ctx.translate(side / 2, side / 2);
-
-                    // ctx.rotate(num);
-                    // ctx.rotate(deg);
-                    //  ctx.translate(R, 0);
-
-                    // ctx.fillText('xxx',
-                    //     0,
-                    //     0)
-
-                    ctx.fillText(text,
-                        Math.sin(deg - num) * R - font_width / 2,
-                        Math.cos(deg - num) * R)
-                    ctx.restore();
-                }
-
-
-            }
-
-            ctx.restore();
-
-
-            requestAnimationFrame(draw)
-        }
-
-
-        window.addEventListener('resize', onWindowResize, false);
-        function onWindowResize() {
-            side = (window.innerHeight * 0.7 > side ? side :  window.innerHeight * 0.7) ;
-            console.log(side);
-
-            dpi = window.devicePixelRatio
-            canvas.width = side * dpi;
-            canvas.height = side * dpi;
-        }
-
-        requestAnimationFrame(draw)
-
 
     </script>
 </body>
