@@ -144,8 +144,8 @@
         var canvas = document.querySelector('#canvas');
         var dpi = 2;
         var side = 1024;
-        canvas.width = side * dpi;
-        canvas.height = side * dpi;
+        canvas.width = window.innerWidth * dpi;
+        canvas.height = window.innerHeight * dpi;
         // canvas.style.width = side + 'px';
         // canvas.style.height = side + 'px';
         var ctx = canvas.getContext('2d');
@@ -214,8 +214,8 @@
             console.log(side);
 
             dpi = window.devicePixelRatio
-            canvas.width = side * dpi;
-            canvas.height = side * dpi;
+            canvas.width = window.innerWidth * dpi;
+            canvas.height = window.innerHeight * dpi;
         }
 
         requestAnimationFrame(draw)
