@@ -177,12 +177,15 @@
 
 
             points.forEach(p => {
+
+                ctx.font = "bold 30px Arial";
+
                 var margin = block_w * 2;
                 var off = ((p.x - user_input_test % 1) % 1.0);
                 off = off < 0 ? 1 + off : off;
-                var x = off * (canvas.width + margin) - margin / 2;
+                var x = off * (canvas.width + margin) - ctx.measureText(p.name).width  - margin / 2;
                 var y = p.y * canvas.height;
-                if (x < -50 | x > 50 + canvas.width) return;
+                if (x < -(50 + ctx.measureText(p.name).width) || x > 50 + canvas.width) return;
 
                 ctx.save();
                 ctx.fillStyle = "#888"
