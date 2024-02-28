@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="../../../assets/lulu.ico">
     <link rel="bookmark" href="../../../assets/lulu.ico">
     <link rel="stylesheet/less" type="text/css" href="css.less">
-    <title>标题</title>
+    <title>和风天气接口</title>
     <script src="../../../src/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../../assets/css/index.css">
     <link rel="stylesheet" href="../../../assets/css/demo.css">
@@ -16,13 +16,12 @@
     <script src="../../../src/menu.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <style>
-        #visual_dom canvas {
-            height: 80%;
-        }
+       
     </style>
 </head>
 
 <body>
+    <script src="../../src/lib/md5.min.js"></script>
     <div id="app">
 
         <header>
@@ -50,9 +49,14 @@
         <div id="visual_dom">
             <canvas id="canvas"></canvas>
         </div>
-
+<!-- 
         <div class="content">
             <h2>{{cur.title}}</h2>
+        </div> -->
+
+        <div class="content">
+            天气
+            {{weather}}
         </div>
 
 
@@ -84,7 +88,7 @@
     </div>
 
 
-
+    <script src="./main.js"></script>
     <script>
         var tem_arr = location.href.split('#');
         var state = {
@@ -103,88 +107,17 @@
 
         new Vue({
             el: '#app',
-            data: { shared, state, cur },
+            data: { shared, state, cur, weather: null },
             methods: {
                 // 点击菜单
                 click_menu() {
                     state.open_menu = !state.open_menu;
                 }
+            },
+            async mounted(){
+                this.weather = await get_now_weather(await get_key())
             }
         })
-
-        var canvas = document.querySelector('#canvas');
-        var dpi = 2;
-        var side = 512;
-        canvas.width = side * dpi;
-        canvas.height = side * dpi;
-        // canvas.style.width = side + 'px';
-        // canvas.style.height = side + 'px';
-        var ctx = canvas.getContext('2d');
-        var count = 100;
-        var R = 220;
-        var num = 0;
-        var text = 'lulu'
-
-        ctx.font = "10px";
-        let font_width = ctx.measureText(text).width;
-
-        function draw() {
-            num += 0.001;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.scale(dpi, dpi)
-            // ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
-            // ctx.fillRect(0, 0, side, side);
-
-
-            for (let i = 0; i < count; i++) {
-                var deg = Math.PI * 2 / count * i
-                ctx.save();
-                ctx.fillStyle = "rgba(255, 255, 255, 1)";
-                ctx.translate(side / 2, side / 2);
-                ctx.rotate(num);
-                ctx.rotate(deg);
-                ctx.translate(R * 0.8, 0);
-                ctx.fillRect(0, 1, 10, 2)
-
-
-                ctx.restore();
-
-                if (i % 2 == 0) {
-                    ctx.save();
-                    ctx.fillStyle = "rgba(255, 255, 255, 1)";
-                    ctx.translate(side / 2, side / 2);
-                    // ctx.rotate(num);
-                    //  ctx.translate(R, 0);
-
-                    ctx.fillText(text,
-                        Math.sin(deg - num) * R - font_width / 2,
-                        Math.cos(deg - num) * R)
-                    ctx.restore();
-                }
-
-
-            }
-
-            ctx.restore();
-
-
-            requestAnimationFrame(draw)
-        }
-
-
-        window.addEventListener('resize', onWindowResize, false);
-        function onWindowResize() {
-            side = (window.innerHeight * 0.7 > side ? side :  window.innerHeight * 0.7) ;
-            console.log(side);
-
-            dpi = window.devicePixelRatio
-            canvas.width = side * dpi;
-            canvas.height = side * dpi;
-        }
-
-        requestAnimationFrame(draw)
-
 
     </script>
 </body>

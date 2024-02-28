@@ -23,9 +23,11 @@
 
         .control {
             position: absolute;
-            bottom: 300px;
+            /* bottom: 300px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%); */
+
+            margin-top: 120px;
         }
 
         input {
@@ -84,11 +86,13 @@
 
         <div class="content">
             <h2>{{cur.title}}</h2>
+
+            <div class="control">
+                <input type="range" id="range">
+            </div>
         </div>
 
-        <div class="control">
-            <input type="range" id="range">
-        </div>
+      
 
         <!-- <section class="menu" :class="{active: state.open_menu, no_selected: !state.open_menu}">
             <h3 v-for="v in shared.menu" class="title" :class="{active: state.open_menu}">
@@ -112,7 +116,7 @@
                     <span class="item-arrow item-arrow-right"></span>
                 </a>
             </span>
-            <div class="date center">Be born in {{cur.date}}<br /></div>
+            <div class="date center">Be generated from {{cur.date}}<br /></div>
             <!-- example be from <a :href="cur.ref.url">{{cur.ref.title}}</a> -->
         </footer>
     </div>
@@ -129,7 +133,10 @@
         // console.log(shared.elements);
 
         var cur = shared.elements[state.id]
-
+        if(cur && cur.title){
+            document.title = cur.title
+        }
+        
         new Vue({
             el: '#app',
             data: { shared, state, cur },

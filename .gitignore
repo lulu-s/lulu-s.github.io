@@ -17,3 +17,6 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
+
+
+key.txt

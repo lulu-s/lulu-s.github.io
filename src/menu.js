@@ -229,6 +229,17 @@ var shared = {
                 bg_img: '../../assets/image/cover/element-css-demo.png'
             }
         },
+        {
+            link: 'https://lulu-s.github.io/demo/everyday/index.html',
+            url: '/elements/4/index.html#4',
+            title: "和风天气接口",
+            ref: "https://dev.qweather.com/docs/configuration/project-and-key/",
+            date: "2024.02.28",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/element-和风天气.png'
+            }
+        },
     ],
     lists: [
         {
