@@ -6,7 +6,9 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="shortcut icon" href="../../../assets/lulu.ico">
     <link rel="bookmark" href="../../../assets/lulu.ico">
-    <link rel="stylesheet/less" type="text/css" href="css.less">
+    <link rel="stylesheet" href="../../assets/css/QWeather-Icons-1.6.0/font/qweather-icons.css">
+    <link rel="stylesheet/less" type="text/css" href="./css.less">
+
     <title>和风天气接口</title>
     <script src="../../../src/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../../assets/css/index.css">
@@ -14,9 +16,23 @@
     <script src="../../../src/lib/util.js"></script>
     <!-- <script src="../../../src/lib/three.min.js"></script> -->
     <script src="../../../src/menu.js"></script>
+
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+
     <style>
-       
+        .block {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
     </style>
 </head>
 
@@ -49,14 +65,20 @@
         <div id="visual_dom">
             <canvas id="canvas"></canvas>
         </div>
-<!-- 
+        <!-- 
         <div class="content">
             <h2>{{cur.title}}</h2>
         </div> -->
 
-        <div class="content">
-            天气
-            {{weather}}
+        <div class="block" v-if="weather && weather.now">
+            <h2>天气</h2>
+            <div>
+                {{weather.now.temp}}℃
+            </div>
+            <div>
+                <i :class="`qi-${weather.now.icon}`"></i> {{weather.now.text}}
+            </div>
+            <!-- {{weather}} -->
         </div>
 
 
@@ -101,7 +123,7 @@
         var cur = shared.elements[state.id]
 
         var cur = shared.elements[state.id]
-        if(cur && cur.title){
+        if (cur && cur.title) {
             document.title = cur.title
         }
 
@@ -114,7 +136,7 @@
                     state.open_menu = !state.open_menu;
                 }
             },
-            async mounted(){
+            async mounted() {
                 this.weather = await get_now_weather(await get_key())
             }
         })

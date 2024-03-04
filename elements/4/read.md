@@ -2,3 +2,7 @@
 
 
 https://dev.qweather.com/docs/api/weather/weather-now/
+
+
+
+https://icons.qweather.com/
