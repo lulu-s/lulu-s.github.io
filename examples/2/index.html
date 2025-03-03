@@ -175,19 +175,28 @@
                 float normalizedPos = ((pos.x * rollDir.x + pos.y * rollDir.y) + 1.0) * 0.5;
                 
                 if (normalizedPos > (1.0 - scrollProgress)) {
+                    // 使用独立于方向的卷起计算
                     float distFromEdge = normalizedPos - (1.0 - scrollProgress);
-                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
                     
-                    // 计算卷轴轴向位置
-                    float axisPos = 1.0 - scrollProgress * 2.0 - radius * sin(angleAroundCylinder);
+                    // 使用线性角度映射，减少螺旋效应
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI;
+                    
+                    // 计算卷轴轴向位置和半径，使其更平滑
+                    float axisPos = 1.0 - scrollProgress * 2.0;
                     float zOffset = radius * (1.0 - cos(angleAroundCylinder));
+                    float radialOffset = radius * sin(angleAroundCylinder);
                     
-                    // 根据角度进行位置转换
-                    pos.x += (axisPos - normalizedPos * 2.0 + 1.0) * rollDir.x;
-                    pos.y += (axisPos - normalizedPos * 2.0 + 1.0) * rollDir.y;
+                    // 分别计算x和y的偏移
+                    float xOffset = radialOffset * rollDir.x;
+                    float yOffset = radialOffset * rollDir.y;
+                    
+                    // 应用变换 - 使用更精确的计算
+                    float moveAmount = normalizedPos * 2.0 - 1.0 - axisPos;
+                    pos.x -= moveAmount * rollDir.x - xOffset;
+                    pos.y -= moveAmount * rollDir.y - yOffset;
                     pos.z += zOffset;
                     
-                    // 使用简单的平滑渐变阴影，与其他方向一致
+                    // 使用更简单的阴影计算
                     vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
                 } else {
                     vShadow = 1.0;
@@ -202,6 +211,13 @@
         uniform float u_time;
         uniform float u_scroll;
         uniform float u_opacity;
+        uniform float u_expandScale;    // 扩散半径系数
+        uniform float u_expandMaxRadius; // 最大扩散半径
+        uniform float u_fadeWidth;      // 边缘模糊宽度
+        uniform float u_noiseScale;     // 噪声纹理缩放
+        uniform float u_noiseAmount;    // 噪声强度
+        uniform float u_lineFrequency;  // 线条频率
+        uniform float u_lineAmount;     // 线条强度
         
         varying vec2 vUv;
         varying float vShadow;
@@ -224,12 +240,12 @@
         }
         
         void main() {
-            // 基础颜色设置 - 恢复原始纸张颜色
-            vec3 paperColor = vec3(0.9, 0.85, 0.7); // 原始的米黄色纸张颜色
+            // 基础颜色设置
+            vec3 paperColor = vec3(0.9, 0.85, 0.7);
             
-            // 添加纹理 - 恢复原始纹理参数
-            float noiseValue = noise(vUv * 100.0) * 0.05;
-            float lines = smoothstep(0.0, 0.02, abs(fract(vUv.y * 30.0) - 0.5)) * 0.03;
+            // 使用参数控制纹理
+            float noiseValue = noise(vUv * u_noiseScale) * u_noiseAmount;
+            float lines = smoothstep(0.0, 0.02, abs(fract(vUv.y * u_lineFrequency) - 0.5)) * u_lineAmount;
             vec3 color = paperColor - noiseValue - lines;
             
             // 应用阴影效果
@@ -239,19 +255,18 @@
             vec2 center = vec2(0.5, 0.5);
             vec2 uv = vUv - center;
             
-            // 计算到中心的距离，考虑屏幕比例
+            // 计算到中心的距离
             float ratio = max(1.0, u_resolution.x / u_resolution.y);
             float dist = length(vec2(uv.x * ratio, uv.y * ratio));
             
-            // 使用分形噪声偏移 - 恢复原始噪声效果
+            // 使用噪声偏移
             float noise_factor = fbm(vUv * 3.0 + u_time * 0.05) * 0.15;
             
-            // 从中心向外扩散
-            float radius = clamp(u_opacity * 1.5, 0.0, 2.0);
-            float fadeWidth = 0.15;
+            // 使用参数控制扩散
+            float radius = clamp(u_opacity * u_expandScale, 0.0, u_expandMaxRadius);
             
             // 从中心向外的平滑过渡
-            float alpha = smoothstep(radius, radius - fadeWidth, dist - noise_factor);
+            float alpha = smoothstep(radius, radius - u_fadeWidth, dist - noise_factor);
             alpha = clamp(alpha, 0.0, 1.0);
             
             gl_FragColor = vec4(color, alpha);
@@ -308,6 +323,25 @@
             angle: 45,
             directionNames: ["水平-右到左", "水平-左到右", "垂直-上到下", "垂直-下到上", "自定义角度"],
             immediateTransition: true // 默认启用即时转换
+        };
+
+        // 添加扩展的动画参数控制
+        var effectSettings = {
+            // 卷轴物理参数
+            scrollSpeed: 0.2,      // 卷轴滚动速度
+            rotations: 2.0,        // 卷轴旋转圈数
+            radius: 0.06,          // 卷轴半径
+            
+            // 扩散效果参数
+            expandScale: 1.5,      // 扩散半径系数
+            expandMaxRadius: 2.0,  // 最大扩散半径
+            fadeWidth: 0.15,       // 边缘模糊宽度
+            
+            // 纸张纹理参数
+            noiseScale: 100.0,     // 噪声纹理缩放
+            noiseAmount: 0.05,     // 噪声强度
+            lineFrequency: 30.0,   // 线条频率
+            lineAmount: 0.03       // 线条强度
         };
 
         // 初始化动画状态
@@ -393,7 +427,7 @@
                     
                 case 'scrolling':
                     // 正常滚动阶段 - 缓慢卷起卷轴
-                    animation.progress += delta * 0.2; // 非常缓慢地增加进度
+                    animation.progress += delta * effectSettings.scrollSpeed; // 使用可调节的速度
                     
                     if (animation.progress >= 1) {
                         // 到达卷起阈值，切换到卷起阶段
@@ -418,8 +452,9 @@
                         animation.cycleCount++;
                     }
                     
-                    // 计算卷起值（0.9到1）
-                    animation.rollValue = 0.9 + animation.progress * 0.1;
+                    // 使用非线性映射加速卷轴卷起，让末尾阶段速度更快
+                    var acceleratedProgress = Math.pow(animation.progress, 0.7); // 指数小于1产生加速效果
+                    animation.rollValue = 0.9 + acceleratedProgress * 0.1;
                     
                     // 即将完成时开始淡出
                     if (animation.progress > 0.8) {
@@ -535,9 +570,47 @@
                 }
             });
             
-            // 默认展开文件夹
-            animFolder.open();
-            directionFolder.open();
+            // 添加特效参数文件夹
+            const effectFolder = gui.addFolder('特效参数');
+            
+            // 卷轴物理参数
+            const rollFolder = effectFolder.addFolder('卷轴物理');
+            rollFolder.add(effectSettings, 'scrollSpeed', 0.05, 0.5).step(0.01).name('卷轴速度').onChange(updateValues);
+            rollFolder.add(effectSettings, 'rotations', 1, 10).step(0.5).name('旋转圈数').onChange(updateShaderParams);
+            rollFolder.add(effectSettings, 'radius', 0.01, 0.2).step(0.01).name('卷轴半径').onChange(updateShaderParams);
+            
+            // 扩散效果参数
+            const expandFolder = effectFolder.addFolder('扩散效果');
+            expandFolder.add(effectSettings, 'expandScale', 0.5, 3).step(0.1).name('扩散半径').onChange(updateValues);
+            expandFolder.add(effectSettings, 'expandMaxRadius', 1, 4).step(0.1).name('最大半径').onChange(updateValues);
+            expandFolder.add(effectSettings, 'fadeWidth', 0.05, 0.5).step(0.01).name('边缘模糊').onChange(updateValues);
+            
+            // 纹理参数
+            const textureFolder = effectFolder.addFolder('纸张纹理');
+            textureFolder.add(effectSettings, 'noiseScale', 10, 300).step(10).name('噪声缩放').onChange(updateValues);
+            textureFolder.add(effectSettings, 'noiseAmount', 0, 0.2).step(0.01).name('噪声强度').onChange(updateValues);
+            textureFolder.add(effectSettings, 'lineFrequency', 5, 100).step(1).name('线条频率').onChange(updateValues);
+            textureFolder.add(effectSettings, 'lineAmount', 0, 0.1).step(0.01).name('线条强度').onChange(updateValues);
+            
+            // 默认展开部分文件夹
+            effectFolder.open();
+            rollFolder.open();
+            expandFolder.open();
+            
+            // 添加值更新函数
+            function updateValues() {
+                // 更新uniform值
+                uniforms.u_expandScale.value = effectSettings.expandScale;
+                uniforms.u_expandMaxRadius.value = effectSettings.expandMaxRadius;
+                uniforms.u_fadeWidth.value = effectSettings.fadeWidth;
+                uniforms.u_noiseScale.value = effectSettings.noiseScale;
+                uniforms.u_noiseAmount.value = effectSettings.noiseAmount;
+                uniforms.u_lineFrequency.value = effectSettings.lineFrequency;
+                uniforms.u_lineAmount.value = effectSettings.lineAmount;
+            }
+            
+            // 初始化值
+            updateValues();
         }
 
         // Update the init function to call setupGUI
@@ -566,7 +639,15 @@
                 u_scroll: { type: "f", value: 0.0 },
                 u_opacity: { type: "f", value: 0.0 },
                 u_rollDirection: { type: "i", value: 0 },
-                u_rollAngle: { type: "f", value: Math.PI/4 }
+                u_rollAngle: { type: "f", value: Math.PI/4 },
+                // 新增的参数
+                u_expandScale: { type: "f", value: 1.5 },
+                u_expandMaxRadius: { type: "f", value: 2.0 },
+                u_fadeWidth: { type: "f", value: 0.15 },
+                u_noiseScale: { type: "f", value: 100.0 },
+                u_noiseAmount: { type: "f", value: 0.05 },
+                u_lineFrequency: { type: "f", value: 30.0 },
+                u_lineAmount: { type: "f", value: 0.03 }
             };
             
             var material = new THREE.ShaderMaterial({
@@ -622,6 +703,44 @@
         function animate() {
             requestAnimationFrame(animate);
             render();
+        }
+
+        // 将这些参数传递给着色器
+        function updateShaderParams() {
+            // 更新顶点着色器参数
+            let vertexShader = document.getElementById('vertexShader').textContent;
+            vertexShader = vertexShader.replace(/float radius = ([^;]+);/, `float radius = ${effectSettings.radius.toFixed(6)};`);
+            vertexShader = vertexShader.replace(/float maxRotations = ([^;]+);/, `float maxRotations = ${effectSettings.rotations.toFixed(1)};`);
+            
+            // 更新渲染器的着色器
+            updateShaders(vertexShader, null);
+        }
+
+        // 更新着色器
+        function updateShaders(vertexSource, fragmentSource) {
+            // 保存当前的uniform值
+            const currentUniforms = {};
+            for (const key in uniforms) {
+                currentUniforms[key] = uniforms[key].value;
+            }
+            
+            // 创建新的材质
+            const newMaterial = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: vertexSource || document.getElementById('vertexShader').textContent,
+                fragmentShader: fragmentSource || document.getElementById('fragmentShader').textContent,
+                side: THREE.DoubleSide,
+                transparent: true
+            });
+            
+            // 应用新材质
+            scene.children[0].material.dispose();
+            scene.children[0].material = newMaterial;
+            
+            // 恢复uniform值
+            for (const key in currentUniforms) {
+                uniforms[key].value = currentUniforms[key];
+            }
         }
 
         init();
