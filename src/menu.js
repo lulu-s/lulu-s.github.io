@@ -151,7 +151,33 @@ var shared = {
         }
     ],
     viewer: [
+        // 1、Ⅰ2、Ⅱ3、Ⅲ4、Ⅳ5、Ⅴ6、Ⅵ7、Ⅶ8、Ⅷ9、Ⅸ10、
         {
+            key: 'v3',
+            url: '/examples/3/index.html#3',
+            title: "Fbm Mask Ⅰ",
+            date: "2025.03.03",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/page3.png'
+            }
+        },
+        {
+            key: 'v2',
+            url: '/examples/2/index.html#2',
+            title: "Unrolling Images",
+            date: "2025.03.03",
+            author: 'lulu',
+            ref: {
+                title: "UnrollingImages",
+                url: ["https://tympanus.net/codrops/2020/01/22/how-to-unroll-images-with-three-js/", "https://tympanus.net/Development/UnrollingImages/"],
+            },
+            css: {
+                bg_img: '../../assets/image/cover/page2.png'
+            }
+        },
+        {
+            key: 'v1',
             url: '/examples/1/index.html#1',
             title: "Shader Demo",
             date: "2022.03.28",
@@ -177,28 +203,8 @@ var shared = {
         //         bg_img: '../../assets/image/cover/page2.png'
         //     }
         // },
-        {
-            url: '/examples/2/index.html#2',
-            title: "Unrolling Images",
-            date: "2025.03.03",
-            author: 'lulu',
-            ref: {
-                title: "UnrollingImages",
-                url: ["https://tympanus.net/codrops/2020/01/22/how-to-unroll-images-with-three-js/", "https://tympanus.net/Development/UnrollingImages/"],
-            },
-            css: {
-                bg_img: '../../assets/image/cover/page2.png'
-            }
-        },
-        // {
-        //     url: '/examples/3/index.html#3',
-        //     title: "🚩 Fly the national flag",
-        //     date: "2022.02.17",
-        //     author: 'lulu',
-        //     css: {
-        //         bg_img: '../../assets/image/cover/page3.png'
-        //     }
-        // },
+
+
         // {
         //     url: '/examples/4/index.html#4',
         //     title: "⭕️ plane shader demo",
@@ -211,24 +217,19 @@ var shared = {
     ],
     elements: [
         {
-            url: '/elements/1/index.html#1',
-            title: "旋转的圆 + 字",
-            date: "2022.05.23",
+            key: 'e4',
+            link: 'https://lulu-s.github.io/demo/everyday/index.html',
+            url: '/elements/4/index.html#4',
+            title: "和风天气接口",
+            ref: "https://dev.qweather.com/docs/configuration/project-and-key/",
+            date: "2024.02.28",
             author: 'lulu',
             css: {
-                bg_img: '../../assets/image/cover/element-circle.png'
+                bg_img: '../../assets/image/cover/element-和风天气.png'
             }
         },
         {
-            url: '/elements/2/index.html#2',
-            title: "横向无限滚动",
-            date: "2023.09.19",
-            author: 'lulu',
-            css: {
-                bg_img: '../../assets/image/cover/element-无限滚动.png'
-            }
-        },
-        {
+            key: 'e3',
             link: 'https://lulu-s.github.io/demo/everyday/index.html',
             url: '/elements/3/index.html#3',
             title: "CSS 视觉 Demo",
@@ -238,15 +239,25 @@ var shared = {
                 bg_img: '../../assets/image/cover/element-css-demo.png'
             }
         },
+
         {
-            link: 'https://lulu-s.github.io/demo/everyday/index.html',
-            url: '/elements/4/index.html#4',
-            title: "和风天气接口",
-            ref: "https://dev.qweather.com/docs/configuration/project-and-key/",
-            date: "2024.02.28",
+            key: 'e2',
+            url: '/elements/2/index.html#2',
+            title: "横向无限滚动",
+            date: "2023.09.19",
             author: 'lulu',
             css: {
-                bg_img: '../../assets/image/cover/element-和风天气.png'
+                bg_img: '../../assets/image/cover/element-无限滚动.png'
+            }
+        },
+        {
+            key: 'e1',
+            url: '/elements/1/index.html#1',
+            title: "旋转的圆 + 字",
+            date: "2022.05.23",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/element-circle.png'
             }
         },
     ],

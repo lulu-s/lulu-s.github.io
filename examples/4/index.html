@@ -56,20 +56,20 @@
 
 
         <footer class="arrow">
-
-            <span class="prev " v-if="state.id != 0">
-                <a class=" item-link" :href="'../' + (state.id + 1 - 1)+'/index.html#' + (state.id + 1 - 1)">
+            <span class="prev " v-if="state.index != 0">
+                <a class=" item-link" :href="(shared.viewer[state.index - 1].url)">
                     <span class="item-arrow item-arrow-left"></span>
                     <span class="item-text">prev</span>
                 </a>
             </span>
             <!-- <a class="author" href="https://github.com/lulu-s">@lulu-s</a> -->
-            <span class="next" v-if="state.id < shared.viewer.length - 1">
-                <a class=" item-link" :href="'../' + (state.id + 1 + 1)+'/index.html#' + (state.id + 1 + 1)">
+            <span class="next" v-if="state.index < shared.viewer.length - 1">
+                <a class=" item-link" :href="(shared.viewer[state.index + 1].url)">
                     <span class="item-text">next</span>
                     <span class="item-arrow item-arrow-right"></span>
                 </a>
             </span>
+            <div class="date center">Created {{cur.date}}<br /></div>
             <!-- Learning in {{cur.date}}<br/>
             example be from <a :href="cur.ref.url">{{cur.ref.title}}</a> -->
         </footer>
@@ -116,14 +116,19 @@
 
     <script>
         var tem_arr = location.href.split('#');
-        console.log(tem_arr);
         var state = {
             open_menu: false,
-            id: parseInt(tem_arr[tem_arr.length - 1]) - 1
+            id: parseInt(tem_arr[tem_arr.length - 1]),
+            index: 0
         }
-
-        var cur = shared.viewer[state.id]
-
+        var cur = shared.viewer.find((v, index) => {
+            state.index = index;
+            return v.key === ('v' + state.id)
+        })
+        if(cur && cur.title){
+            document.title = cur.title
+        }
+        
         new Vue({
             el: '#app',
             data: { shared, state, cur },

@@ -65,15 +65,15 @@
 
         <footer class="arrow">
 
-            <span class="prev " v-if="state.id != 0">
-                <a class=" item-link" :href="'../' + (state.id + 1 - 1)+'/index.html#' + (state.id + 1 - 1)">
+            <span class="prev " v-if="state.index != 0">
+                <a class=" item-link" :href="( shared.elements[state.index - 1].url )">
                     <span class="item-arrow item-arrow-left"></span>
                     <span class="item-text">prev</span>
                 </a>
             </span>
             <!-- <a class="author" href="https://github.com/lulu-s">@lulu-s</a> -->
-            <span class="next" v-if="state.id < shared.elements.length - 1">
-                <a class=" item-link" :href="'../' + (state.id + 1 + 1)+'/index.html#' + (state.id + 1 + 1)">
+            <span class="next" v-if="state.index < shared.elements.length - 1">
+                <a class=" item-link" :href="( shared.elements[state.index + 1].url )">
                     <span class="item-text">next</span>
                     <span class="item-arrow item-arrow-right"></span>
                 </a>
@@ -89,14 +89,16 @@
         var tem_arr = location.href.split('#');
         var state = {
             open_menu: false,
-            id: parseInt(tem_arr[tem_arr.length - 1]) - 1
+            id: parseInt(tem_arr[tem_arr.length - 1]),
+            index: 0
         }
 
-        // console.log(shared.elements);
+        var cur = shared.elements.find((v, index) => {
+            state.index = index;
+            
+            return v.key === ('e' + state.id)
+        })
 
-        var cur = shared.elements[state.id]
-
-        var cur = shared.elements[state.id]
         if(cur && cur.title){
             document.title = cur.title
         }
