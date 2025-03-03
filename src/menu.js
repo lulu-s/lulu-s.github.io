@@ -153,16 +153,6 @@ var shared = {
     viewer: [
         // 1、Ⅰ2、Ⅱ3、Ⅲ4、Ⅳ5、Ⅴ6、Ⅵ7、Ⅶ8、Ⅷ9、Ⅸ10、
         {
-            key: 'v3',
-            url: '/examples/3/index.html#3',
-            title: "Fbm Mask Ⅰ",
-            date: "2025.03.03",
-            author: 'lulu',
-            css: {
-                bg_img: '../../assets/image/cover/page3.png'
-            }
-        },
-        {
             key: 'v2',
             url: '/examples/2/index.html#2',
             title: "Unrolling Images",
@@ -174,6 +164,16 @@ var shared = {
             },
             css: {
                 bg_img: '../../assets/image/cover/page2.png'
+            }
+        },
+        {
+            key: 'v3',
+            url: '/examples/3/index.html#3',
+            title: "Fbm Mask Ⅰ",
+            date: "2024.09.02",
+            author: 'lulu',
+            css: {
+                bg_img: '../../assets/image/cover/page3.png'
             }
         },
         {
