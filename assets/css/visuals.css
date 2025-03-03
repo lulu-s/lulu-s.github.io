@@ -31,11 +31,11 @@ a:-webkit-any-link {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     width: 100%;
     min-height: 2px;
     align-content: flex-start;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
 .col-md-4 {
@@ -96,7 +96,8 @@ a:-webkit-any-link {
 
 .img {
     width: 100%;
-        height: auto;
+    height: 100%;
+        /* height: auto; */
     position: absolute;
     left: 0;
     top: 0;

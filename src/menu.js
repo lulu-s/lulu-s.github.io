@@ -164,32 +164,32 @@ var shared = {
                 bg_img: '../../assets/image/cover/page1.png'
             }
         },
-        {
-            url: '/examples/2/index.html#2',
-            title: "Shader Demo2",
-            date: "2023.02.01",
-            author: 'lulu',
-            ref: {
-                title: "Three.js 进阶之旅：Shader着色器基础图案-旷野之息神庙铁球 ",
-                url: ["https://juejin.cn/post/7158628520623603748"],
-            },
-            css: {
-                bg_img: '../../assets/image/cover/page2.png'
-            }
-        },
         // {
         //     url: '/examples/2/index.html#2',
-        //     title: "Water Shader Demo",
-        //     date: "2022.10.08",
+        //     title: "Shader Demo2",
+        //     date: "2023.02.01",
         //     author: 'lulu',
         //     ref: {
-        //         title: "thebookofshaders",
-        //         url: ["https://threejs.org/examples/webgl_water.html", "https://threejs.org/examples/webgl_shaders_ocean.html"],
+        //         title: "Three.js 进阶之旅：Shader着色器基础图案-旷野之息神庙铁球 ",
+        //         url: ["https://juejin.cn/post/7158628520623603748"],
         //     },
         //     css: {
         //         bg_img: '../../assets/image/cover/page2.png'
         //     }
         // },
+        {
+            url: '/examples/2/index.html#2',
+            title: "Unrolling Images",
+            date: "2025.03.03",
+            author: 'lulu',
+            ref: {
+                title: "UnrollingImages",
+                url: ["https://tympanus.net/codrops/2020/01/22/how-to-unroll-images-with-three-js/", "https://tympanus.net/Development/UnrollingImages/"],
+            },
+            css: {
+                bg_img: '../../assets/image/cover/page2.png'
+            }
+        },
         // {
         //     url: '/examples/3/index.html#3',
         //     title: "🚩 Fly the national flag",
@@ -197,6 +197,15 @@ var shared = {
         //     author: 'lulu',
         //     css: {
         //         bg_img: '../../assets/image/cover/page3.png'
+        //     }
+        // },
+        // {
+        //     url: '/examples/4/index.html#4',
+        //     title: "⭕️ plane shader demo",
+        //     date: "2024.03.12",
+        //     author: 'lulu',
+        //     css: {
+        //         bg_img: '../../assets/image/cover/page4.png'
         //     }
         // },
     ],

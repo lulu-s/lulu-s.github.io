@@ -6,7 +6,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="shortcut icon" href="../../../assets/lulu.ico">
     <link rel="bookmark" href="../../../assets/lulu.ico">
-    <title>Shader Text Canvas</title>
+    <title>Unrolling Images</title>
     <script src="../../../src/lib/vue.min.js"></script>
     <link rel="stylesheet" href="../../../assets/css/index.css">
     <link rel="stylesheet" href="../../../assets/css/demo.css">
@@ -14,6 +14,8 @@
     <script src="../../../src/lib/three.min.js"></script>
     <script src="../../../src/menu.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+    <script src="../../../src/lib/dat.gui.min.js"></script>
+    <script src="../../../src/lib/gui.js"></script>
     <style>
 
     </style>
@@ -32,9 +34,15 @@
                 </ul>
             </div> -->
 
-            <h1 class="demo-title"><a class="title" href="/page/visuals">Web<br /> Graphics<br /> Visual <br />  </a>
-            
-            <a class="github" href="https://github.com/lulu-s"><svg t="1664427615746" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2687" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667" class="git-main" fill="#fff" p-id="2688"></path></svg></a>
+            <h1 class="demo-title"><a class="title" href="/page/visuals">Web<br /> Graphics<br /> Visual <br /> </a>
+
+                <a class="github" href="https://github.com/lulu-s"><svg t="1664427615746" class="icon"
+                        viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2687"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30">
+                        <path
+                            d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667"
+                            class="git-main" fill="#fff" p-id="2688"></path>
+                    </svg></a>
             </h1>
         </header>
 
@@ -74,17 +82,179 @@
 
 
     <script id="vertexShader" type="x-shader/x-vertex">
+        uniform float u_time;
+        uniform float u_scroll;
+        uniform int u_rollDirection; // 0=水平右到左, 1=水平左到右, 2=垂直上到下, 3=垂直下到上, 4=自定义角度
+        uniform float u_rollAngle; // 卷轴角度 (弧度)
+        
+        varying vec2 vUv;
+        varying float vShadow;
+        
+        const float PI = 3.14159265359;
+        
         void main() {
-            gl_Position = vec4( position, 1.0 );
+            vUv = uv;
+            
+            // 卷轴参数
+            float radius = 0.06; // 卷轴半径
+            float maxRotations = 2.0; // 减少旋转圈数，避免纹路过多
+            
+            vec3 pos = position;
+            float scrollProgress = clamp(u_scroll, 0.0, 1.0);
+            
+            // 根据不同的卷轴方向计算变形
+            if (u_rollDirection == 0) { // 水平 - 右到左
+                // 标准化位置 (0-1范围)
+                float normalizedX = (pos.x + 1.0) * 0.5;
+                
+                // 如果在卷起区域内
+                if (normalizedX > (1.0 - scrollProgress)) {
+                    float distFromEdge = normalizedX - (1.0 - scrollProgress);
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
+                    
+                    // 计算新位置
+                    pos.x = 1.0 - scrollProgress * 2.0 - radius * sin(angleAroundCylinder);
+                    pos.z = radius * (1.0 - cos(angleAroundCylinder));
+                    
+                    // 简化阴影计算，使用更平滑的渐变
+                    vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
+                } else {
+                    vShadow = 1.0;
+                }
+            }
+            else if (u_rollDirection == 1) { // 水平 - 左到右
+                float normalizedX = (pos.x + 1.0) * 0.5;
+                
+                if (normalizedX < scrollProgress) {
+                    float distFromEdge = scrollProgress - normalizedX;
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
+                    
+                    pos.x = -1.0 + scrollProgress * 2.0 + radius * sin(angleAroundCylinder);
+                    pos.z = radius * (1.0 - cos(angleAroundCylinder));
+                    
+                    vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
+                } else {
+                    vShadow = 1.0;
+                }
+            }
+            else if (u_rollDirection == 2) { // 垂直 - 上到下
+                float normalizedY = (pos.y + 1.0) * 0.5;
+                
+                if (normalizedY > (1.0 - scrollProgress)) {
+                    float distFromEdge = normalizedY - (1.0 - scrollProgress);
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
+                    
+                    pos.y = 1.0 - scrollProgress * 2.0 - radius * sin(angleAroundCylinder);
+                    pos.z = radius * (1.0 - cos(angleAroundCylinder));
+                    
+                    vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
+                } else {
+                    vShadow = 1.0;
+                }
+            }
+            else if (u_rollDirection == 3) { // 垂直 - 下到上
+                float normalizedY = (pos.y + 1.0) * 0.5;
+                
+                if (normalizedY < scrollProgress) {
+                    float distFromEdge = scrollProgress - normalizedY;
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
+                    
+                    pos.y = -1.0 + scrollProgress * 2.0 + radius * sin(angleAroundCylinder);
+                    pos.z = radius * (1.0 - cos(angleAroundCylinder));
+                    
+                    vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
+                } else {
+                    vShadow = 1.0;
+                }
+            }
+            else if (u_rollDirection == 4) { // 自定义角度
+                // 基于角度计算方向向量
+                vec2 rollDir = vec2(cos(u_rollAngle), sin(u_rollAngle));
+                
+                // 将顶点投影到该方向
+                float normalizedPos = ((pos.x * rollDir.x + pos.y * rollDir.y) + 1.0) * 0.5;
+                
+                if (normalizedPos > (1.0 - scrollProgress)) {
+                    float distFromEdge = normalizedPos - (1.0 - scrollProgress);
+                    float angleAroundCylinder = (distFromEdge / scrollProgress) * 2.0 * PI * maxRotations;
+                    
+                    // 计算卷轴轴向位置
+                    float axisPos = 1.0 - scrollProgress * 2.0 - radius * sin(angleAroundCylinder);
+                    float zOffset = radius * (1.0 - cos(angleAroundCylinder));
+                    
+                    // 根据角度进行位置转换
+                    pos.x += (axisPos - normalizedPos * 2.0 + 1.0) * rollDir.x;
+                    pos.y += (axisPos - normalizedPos * 2.0 + 1.0) * rollDir.y;
+                    pos.z += zOffset;
+                    
+                    // 使用简单的平滑渐变阴影，与其他方向一致
+                    vShadow = mix(0.7, 1.0, cos(angleAroundCylinder) * 0.5 + 0.5);
+                } else {
+                    vShadow = 1.0;
+                }
+            }
+            
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
         }
     </script>
     <script id="fragmentShader" type="x-shader/x-fragment">
         uniform vec2 u_resolution;
         uniform float u_time;
-
+        uniform float u_scroll;
+        uniform float u_opacity;
+        
+        varying vec2 vUv;
+        varying float vShadow;
+        
+        // 噪声函数
+        float noise(vec2 st) {
+            return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+        }
+        
+        // 分形噪声函数
+        float fbm(vec2 p) {
+            float f = 0.0;
+            float amp = 0.5;
+            for (int i = 0; i < 4; i++) {
+                f += amp * noise(p);
+                p *= 2.0;
+                amp *= 0.5;
+            }
+            return f;
+        }
+        
         void main() {
-            vec2 st = gl_FragCoord.xy/u_resolution.xy;
-            gl_FragColor=vec4(st.x + abs(sin(u_time))*0.1,st.y + abs(sin(u_time))*0.6, 1.0,1.0);
+            // 基础颜色设置 - 恢复原始纸张颜色
+            vec3 paperColor = vec3(0.9, 0.85, 0.7); // 原始的米黄色纸张颜色
+            
+            // 添加纹理 - 恢复原始纹理参数
+            float noiseValue = noise(vUv * 100.0) * 0.05;
+            float lines = smoothstep(0.0, 0.02, abs(fract(vUv.y * 30.0) - 0.5)) * 0.03;
+            vec3 color = paperColor - noiseValue - lines;
+            
+            // 应用阴影效果
+            color *= vShadow;
+            
+            // 计算从中心扩散的效果
+            vec2 center = vec2(0.5, 0.5);
+            vec2 uv = vUv - center;
+            
+            // 计算到中心的距离，考虑屏幕比例
+            float ratio = max(1.0, u_resolution.x / u_resolution.y);
+            float dist = length(vec2(uv.x * ratio, uv.y * ratio));
+            
+            // 使用分形噪声偏移 - 恢复原始噪声效果
+            float noise_factor = fbm(vUv * 3.0 + u_time * 0.05) * 0.15;
+            
+            // 从中心向外扩散
+            float radius = clamp(u_opacity * 1.5, 0.0, 2.0);
+            float fadeWidth = 0.15;
+            
+            // 从中心向外的平滑过渡
+            float alpha = smoothstep(radius, radius - fadeWidth, dist - noise_factor);
+            alpha = clamp(alpha, 0.0, 1.0);
+            
+            gl_FragColor = vec4(color, alpha);
         }
     </script>
     <script>
@@ -113,59 +283,349 @@
         var camera, scene, renderer, clock;
         var uniforms;
 
-        init();
-        animate();
+        // 在动画控制变量后添加卷轴方向控制设置
+        var animation = {
+            phase: 'init',
+            expandDuration: 1.2,
+            rollDuration: 0.2,
+            pauseDuration: 0.1,
+            
+            // Current state
+            progress: 0,
+            pauseTimer: 0,
+            opacity: 0,
+            rollValue: 0,
+            locked: false,
+            cycleCount: 0,
+            
+            // Debug info
+            lastPhaseChange: 0
+        };
 
+        // 添加卷轴方向设置对象
+        var rollSettings = {
+            direction: 0,
+            angle: 45,
+            directionNames: ["水平-右到左", "水平-左到右", "垂直-上到下", "垂直-下到上", "自定义角度"],
+            immediateTransition: true // 默认启用即时转换
+        };
+
+        // 初始化动画状态
+        function resetAnimation() {
+            animation.phase = 'init';
+            animation.progress = 0;
+            animation.pauseTimer = 0;
+            animation.opacity = 0;
+            animation.rollValue = 0;
+            animation.locked = false;
+            
+            // 保持当前的卷轴方向设置
+            // uniforms.u_rollDirection 和 u_rollAngle 保持不变
+            
+            // 强制设置着色器不透明度和卷轴值
+            uniforms.u_opacity.value = 0;
+            uniforms.u_scroll.value = 0;
+        }
+
+        // 阶段转换函数 - 带锁定保护
+        function transitionTo(newPhase) {
+            if (animation.locked) return;
+            
+            console.log(`动画阶段转换: ${animation.phase} -> ${newPhase} (循环: ${animation.cycleCount})`);
+            
+            // 记录时间
+            animation.lastPhaseChange = performance.now();
+            
+            // 重置进度
+            animation.progress = 0;
+            animation.pauseTimer = 0;
+            animation.locked = true; // 暂时锁定状态变化
+            
+            // 设置新阶段
+            animation.phase = newPhase;
+            
+            // 短暂延迟后解锁
+            setTimeout(() => {
+                animation.locked = false;
+            }, 100);
+        }
+
+        function render() {
+            // 固定帧率的时间步进
+            const delta = 1/60;
+            
+            // 更新着色器时间
+            uniforms.u_time.value += delta;
+            
+            // 暂停计时器处理
+            if (animation.pauseTimer > 0) {
+                animation.pauseTimer -= delta;
+                if (animation.pauseTimer <= 0) {
+                    // 暂停结束，继续下一个阶段
+                    advancePhase();
+                }
+                renderer.render(scene, camera);
+                return;
+            }
+            
+            // 基于当前阶段执行动画
+            switch(animation.phase) {
+                case 'init':
+                    // 初始化阶段 - 立即转到扩散阶段
+                    transitionTo('expanding');
+                    break;
+                    
+                case 'expanding':
+                    // 扩散阶段 - 从中心向外展示卷轴
+                    animation.progress += delta / animation.expandDuration;
+                    
+                    if (animation.progress >= 1) {
+                        // 扩散完成，暂停一下
+                        animation.progress = 1;
+                        animation.pauseTimer = animation.pauseDuration;
+                    }
+                    
+                    // 更新不透明度 (0-1)
+                    animation.opacity = Math.min(1, animation.progress);
+                    animation.rollValue = 0; // 扩散时保持完全展开
+                    
+                    break;
+                    
+                case 'scrolling':
+                    // 正常滚动阶段 - 缓慢卷起卷轴
+                    animation.progress += delta * 0.2; // 非常缓慢地增加进度
+                    
+                    if (animation.progress >= 1) {
+                        // 到达卷起阈值，切换到卷起阶段
+                        transitionTo('rolling');
+                        break;
+                    }
+                    
+                    // 计算卷起值（0到0.9）
+                    animation.rollValue = animation.progress * 0.9;
+                    animation.opacity = 1; // 保持完全不透明
+                    
+                    break;
+                    
+                case 'rolling':
+                    // 卷起阶段 - 完成卷轴的卷起
+                    animation.progress += delta / animation.rollDuration;
+                    
+                    if (animation.progress >= 1) {
+                        // 卷起完成，准备开始新的循环
+                        animation.progress = 1;
+                        animation.pauseTimer = animation.pauseDuration;
+                        animation.cycleCount++;
+                    }
+                    
+                    // 计算卷起值（0.9到1）
+                    animation.rollValue = 0.9 + animation.progress * 0.1;
+                    
+                    // 即将完成时开始淡出
+                    if (animation.progress > 0.8) {
+                        animation.opacity = 1 - (animation.progress - 0.8) * 5; // 最后20%时快速淡出
+                    } else {
+                        animation.opacity = 1;
+                    }
+                    
+                    break;
+            }
+            
+            // 应用计算后的值到着色器
+            uniforms.u_opacity.value = animation.opacity;
+            uniforms.u_scroll.value = animation.rollValue;
+            
+            // 渲染场景
+            renderer.render(scene, camera);
+        }
+
+        // 推进到下一个阶段
+        function advancePhase() {
+            switch(animation.phase) {
+                case 'expanding':
+                    transitionTo('scrolling');
+                    break;
+                    
+                case 'rolling':
+                    // 完成一个循环，立即开始新循环
+                    resetAnimation();
+                    // 直接启动下一个循环，无需等待
+                    animation.pauseTimer = rollSettings.immediateTransition ? 0 : animation.pauseDuration;
+                    transitionTo('expanding');
+                    break;
+                    
+                default:
+                    transitionTo('expanding');
+            }
+        }
+
+        // Add this after the existing init() function
+        function setupGUI() {
+            // Create a new ThreeGUI instance
+            window.gui = new ThreeGUI({
+                width: 300,
+                closed: false, // 默认打开
+                title: '卷轴控制'
+            });
+            
+            // 动画控制
+            const animFolder = gui.addFolder('动画设置');
+            animFolder.add(animation, 'expandDuration', 0.1, 3).step(0.1).name('扩散持续时间');
+            animFolder.add(animation, 'rollDuration', 0.1, 3).step(0.1).name('卷起持续时间');
+            animFolder.add(animation, 'pauseDuration', 0, 1).step(0.05).name('暂停持续时间');
+            
+            // 卷轴方向控制
+            const directionFolder = gui.addFolder('卷轴方向');
+            
+            // 添加方向选择器
+            directionFolder.add(rollSettings, 'direction', {
+                "水平-右到左": 0, 
+                "水平-左到右": 1, 
+                "垂直-上到下": 2, 
+                "垂直-下到上": 3, 
+                "自定义角度": 4
+            }).name('卷轴方向').onChange(function(value) {
+                uniforms.u_rollDirection.value = parseInt(value);
+                
+                // 显示/隐藏角度控制滑块
+                angleControl.domElement.parentElement.style.display = 
+                    (value == 4) ? 'block' : 'none';
+                
+                // 重置动画
+                resetAnimation();
+            });
+            
+            // 添加角度控制（初始隐藏）
+            const angleControl = directionFolder.add(rollSettings, 'angle', 0, 360).step(1).name('角度（度）');
+            angleControl.onChange(function(value) {
+                // 转换角度为弧度
+                uniforms.u_rollAngle.value = value * Math.PI / 180;
+                
+                // 如果不在自定义角度模式，切换到自定义角度模式
+                if (uniforms.u_rollDirection.value != 4) {
+                    uniforms.u_rollDirection.value = 4;
+                    rollSettings.direction = 4;
+                    
+                    // 更新GUI显示
+                    for (let controller of directionFolder.__controllers) {
+                        if (controller.property === 'direction') {
+                            controller.updateDisplay();
+                            break;
+                        }
+                    }
+                }
+                
+                // 可选：重置动画
+                resetAnimation();
+            });
+            
+            // 初始隐藏角度控制
+            angleControl.domElement.parentElement.style.display = 'none';
+            
+            // 添加重置按钮
+            gui.add({resetAnimation: function() {
+                resetAnimation();
+            }}, 'resetAnimation').name('重置动画');
+            
+            // 添加即时转换选项
+            animFolder.add(rollSettings, 'immediateTransition').name('即时转换').onChange(function(value) {
+                // 如果当前在暂停状态，且选择了即时转换，则立即前进到下一个阶段
+                if (animation.pauseTimer > 0 && value) {
+                    animation.pauseTimer = 0;
+                }
+            });
+            
+            // 默认展开文件夹
+            animFolder.open();
+            directionFolder.open();
+        }
+
+        // Update the init function to call setupGUI
         function init() {
             container = document.getElementById('visual_dom');
-            console.log(container);
-
-            camera = new THREE.Camera();
-            camera.position.z = 1;
-
+            
+            // 调整相机位置
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 1.2);
+            camera.lookAt(0, 0, 0);
+            
             scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000); // 设置黑色背景，使扩散效果更明显
             clock = new THREE.Clock();
-
-            var geometry = new THREE.PlaneBufferGeometry(2, 2);
-
+            
+            // 增加平面高度确保全屏覆盖
+            var aspectRatio = window.innerWidth / window.innerHeight;
+            var planeHeight = 1.2; // 增加高度
+            var planeWidth = planeHeight * aspectRatio > 2 ? planeHeight * aspectRatio : 2;
+            
+            var geometry = new THREE.PlaneGeometry(planeWidth, planeHeight, 200, 50);
+            
             uniforms = {
                 u_time: { type: "f", value: 1.0 },
-                u_resolution: { type: "v2", value: new THREE.Vector2() }
+                u_resolution: { type: "v2", value: new THREE.Vector2() },
+                u_scroll: { type: "f", value: 0.0 },
+                u_opacity: { type: "f", value: 0.0 },
+                u_rollDirection: { type: "i", value: 0 },
+                u_rollAngle: { type: "f", value: Math.PI/4 }
             };
-
+            
             var material = new THREE.ShaderMaterial({
                 uniforms: uniforms,
                 vertexShader: document.getElementById('vertexShader').textContent,
-                fragmentShader: document.getElementById('fragmentShader').textContent
+                fragmentShader: document.getElementById('fragmentShader').textContent,
+                side: THREE.DoubleSide,
+                transparent: true // 启用透明度
             });
-
+            
             var mesh = new THREE.Mesh(geometry, material);
             scene.add(mesh);
-
-            renderer = new THREE.WebGLRenderer();
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
-
+            
             container.appendChild(renderer.domElement);
-
+            
             onWindowResize();
             window.addEventListener('resize', onWindowResize, false);
+            
+            // Ensure animation system is correctly initialized
+            resetAnimation();
+            
+            // Add this line to setup the GUI
+            setupGUI();
+            
+            // Ensure resolution information is correctly passed to the shader
+            uniforms.u_resolution.value.x = window.innerWidth;
+            uniforms.u_resolution.value.y = window.innerHeight;
         }
 
         function onWindowResize(event) {
+            // 更新相机
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            
+            // 更新渲染器
             renderer.setSize(window.innerWidth, window.innerHeight);
             uniforms.u_resolution.value.x = renderer.domElement.width;
             uniforms.u_resolution.value.y = renderer.domElement.height;
+            
+            // 更新场景中的平面大小以适应新的宽高比
+            scene.children[0].geometry.dispose();
+            var aspectRatio = window.innerWidth / window.innerHeight;
+            var planeHeight = 1.2;
+            var planeWidth = planeHeight * aspectRatio > 2 ? planeHeight * aspectRatio : 2;
+            
+            scene.children[0].geometry = new THREE.PlaneGeometry(planeWidth, planeHeight, 200, 50);
         }
 
+        // 添加动画循环函数
         function animate() {
             requestAnimationFrame(animate);
             render();
         }
 
-        function render() {
-            uniforms.u_time.value += clock.getDelta();
-            renderer.render(scene, camera);
-        }
+        init();
+        animate();
     </script>
 </body>
 
