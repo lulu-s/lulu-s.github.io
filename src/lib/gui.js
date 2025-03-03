@@ -23,11 +23,11 @@ class ThreeGUI {
         this.folders = {};
         
         // Add version to GUI
-        if (options.showVersion !== false) {
-            const version = this.gui.add({ version: '1.0.0' }, 'version');
-            version.domElement.style.pointerEvents = 'none';
-            version.domElement.style.opacity = '0.5';
-        }
+        // if (options.showVersion !== false) {
+        //     const version = this.gui.add({ version: '1.0.0' }, 'version');
+        //     version.domElement.style.pointerEvents = 'none';
+        //     version.domElement.style.opacity = '0.5';
+        // }
     }
     
     /**
